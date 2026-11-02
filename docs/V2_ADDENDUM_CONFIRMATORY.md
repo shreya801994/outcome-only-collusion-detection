@@ -31,3 +31,18 @@ Each cell has 30 runs per cost cell per conduct (270 per class).
 ## How results will be reported
 - **If all pass:** the cost-spread and equivalence findings are reported as **confirmed**.
 - **If any fails:** that finding is reported as **not confirmed**, and the paper does not claim it.
+
+## Results (added after the run; the rules above are unchanged)
+
+The run took 28 s of CPU, with 270 runs per class per cell. Outputs: `results_v2/confirmatory.csv` and `confirmatory_criteria.json`.
+
+| ID | Result | Pass? |
+|---|---|---|
+| C1 | within − pooled AUC(B0) = **0.221** (pooled 0.779, within 1.000) | **pass** |
+| C1b | naive-threshold B0 FPR on competitive runs = 153/270 = **0.567**, Wilson [0.507, 0.624] | **pass** |
+| C2 | pooled AUC: B1 0.522, B2 0.492, B3 0.500, D 0.466 (all at chance) | **pass** |
+| C3 | AUC(D) = **1.000** | **pass** |
+
+Both exploratory findings are therefore **confirmed** on fresh seeds.
+
+Observation (not a pre-registered rule): in C3, B1 (1.000) and B2 (0.982) also separate the tracking cartel from Nash-tracking competitors under share-moving shocks. The paper should therefore not claim that D is the only screen that works under share variation. The supported claim is narrower: without share variation, nothing except price level separates, and price level is confounded by hidden costs.
