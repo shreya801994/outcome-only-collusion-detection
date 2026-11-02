@@ -38,3 +38,26 @@ This is not a test. From the existing main-design results, the following are rep
 - TPR and FPR with Wilson 95% CIs;
 - precision and F1 at an assumed 50% prevalence;
 - the run counts.
+
+## Results (added after the run; the rules above are unchanged)
+
+13 s of CPU. Outputs: `results_v2/addendum2_scores.csv`, `addendum2_criteria.json`, `operating_points.csv`.
+
+| ID | Result | Pass? |
+|---|---|---|
+| H1a | Slow competitors flagged at the frozen E2 threshold: **270/270, FPR 1.00**, Wilson [0.986, 1.000] | **fail** |
+| H1b | Slow tracking cartel vs slow competitors: AUC(D) **0.822** [0.795, 0.850] | pass |
+| H2 | Cost-padding cartel, pooled AUC: D **0.378**, B3 0.412, B2 **0.346**, B1 **0.836** | **fail** (B1 and B2 outside [0.35, 0.65]) |
+| H2 (B0, report only) | pooled 0.960 [0.950, 0.969]; within cost cell 1.000 | none |
+
+### What the failures mean
+1. **H1a: the 1.00 AUC of D was partly an artefact of fast competitors.** A D threshold calibrated on fast best responders flags every slow, noisy competitor. D tests consistency with *immediately adjusting* static competition at constant cost. Its false-positive rate depends on an adjustment speed the auditor does not observe. When cartel and competitors adjust equally slowly, D still separates them, but only at AUC 0.82.
+2. **H2: D cannot detect a cartel that mimics higher-cost competition** (AUC 0.38, below chance). The prediction that every behavioural screen would be at chance was wrong for B1 (0.84) and, marginally, B2 (0.35).
+   - An exploratory check (`experiments/v2_check_padding_identity.py`) shows the cost-padding cartel's price and quantity paths are **identical** (max difference 0.0) to those of competitive firms whose true costs are c + m, under the same random streams.
+   - So B1's 0.84 does not detect conduct. It responds to the higher effective cost level: pass-through of common shocks depends on markups. **B1 and B2 are themselves confounded by hidden cost levels.**
+   - The paper must not present B1's separation in H2 as detection.
+
+### Consequence for the paper's claims
+The defensible statement is: **outcome-only screens detect departures from a specific competitive model (constant cost, fast static best response, known demand), not collusion as such.** Two things follow:
+- Any cartel that behaves like competition at higher costs is unidentifiable without cost information.
+- D's error rates depend on how fast competitors adjust, which the auditor does not know.
