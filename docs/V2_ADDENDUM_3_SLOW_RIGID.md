@@ -1,0 +1,34 @@
+# V2 addendum 3: slow rigid cartel vs slow competitors (frozen before running)
+
+Written on 2026-11-02, before running `experiments/v2_slow_rigid.py`. This closes the gap listed in `docs/FINAL_AUDIT.md` §6, item 4: only the *tracking* cartel had been run with slow adjustment (addendum 2, H1b). Nothing in earlier addenda is changed.
+
+## Design
+- **Environment:** E2 (share-moving shocks), same shock process, horizon (T = 300, burn-in 50) and 3 × 3 hidden-cost grid as `V2_DESIGN.md`.
+- **Dynamics, matched in both arms:** the addendum-2 `SLOW` parameters, i.e. adjustment speed λ ~ U[0.05, 0.20] per firm, price noise SD 0.02, price-cut probability 0.01. All other agent parameters are the design defaults.
+- **Arms** (each 270 runs, 30 per cost cell):
+  - `collusive_rigid` under `SLOW`
+  - `competitive` under `SLOW`
+- **Seeds:** base **20261106**, used nowhere else. Every threshold comes from the main-design calibration split (base 20261102), so calibration and evaluation seeds are independent.
+- **Thresholds:** frozen at the main-design matched-E2 values in `results_v2/thresholds.csv`. B0 1.66247, B1 −0.22115, B2 0.41647, B3 1.00000, D_L2 0.05346, D_L3 0.05346. Flag if score > threshold. B3's threshold of 1.0 can never be exceeded, so B3 flags nothing by construction; it is reported anyway.
+- **Auditor level:** L3 (prices, quantities, market size; μ known).
+
+## Metrics (all reported, unit = run)
+- AUC pooled over cost cells, and the mean of within-cost-cell AUCs.
+- TPR and FPR at the frozen thresholds.
+- Precision and F1 at an assumed 50% prevalence.
+- Run-level stratified bootstrap 95% CIs for every metric: 2,000 resamples, resampling runs within class × cost cell. Wilson intervals for TPR and FPR as well.
+
+## Diagnostic: conduct versus adjustment dynamics
+Two contrasts for D (D_L3), each a pooled AUC:
+- **Conduct contrast:** slow rigid cartel vs slow competitors (dynamics matched).
+- **Dynamics contrast:** slow competitors vs fast competitors. Fast = the main-design E2 competitive test runs (seed base 20261102, test split). Conduct is matched (both competitive); only adjustment dynamics differ.
+
+## Decision rules (fixed now)
+
+| ID | Rule | Reading |
+|---|---|---|
+| S1 | AUC(D) conduct contrast ≥ 0.80 | A conduct signal survives matched slow dynamics for the rigid cartel |
+| S2 | FPR of slow competitors at the frozen D threshold ≤ 0.10 | The frozen threshold transfers to slow competitors (addendum 2 predicts a fail) |
+| S3 | dynamics contrast AUC(D) < conduct contrast AUC(D) | D is *more* sensitive to conduct than to adjustment speed. If it fails, D is at least as sensitive to dynamics as to conduct. |
+
+No other new experiment is part of this addendum. **Option B (`docs/FINAL_AUDIT.md` §5) remains unrun, and its kill criterion is unchanged.**
