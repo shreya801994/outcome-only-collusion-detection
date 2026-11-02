@@ -1,0 +1,38 @@
+{
+  "S1": {
+    "rule": "AUC(D) slow rigid vs slow competitors >= 0.80",
+    "value": [
+      0.853840877914952,
+      0.8306615226337448,
+      0.8756244855967078
+    ],
+    "pass": true
+  },
+  "S2": {
+    "rule": "FPR of slow competitors at frozen D threshold <= 0.10",
+    "value": [
+      1.0,
+      0.9859719604283536,
+      1.0
+    ],
+    "pass": false
+  },
+  "S3": {
+    "rule": "dynamics-contrast AUC(D) < conduct-contrast AUC(D)",
+    "dynamics_contrast": [
+      0.9999588477366255,
+      0.9998353909465021,
+      1.0
+    ],
+    "conduct_contrast": 0.853840877914952,
+    "pass": false
+  },
+  "descriptives": {
+    "D_median_slow_rigid": 0.28248880844380464,
+    "D_median_slow_comp": 0.15906767656797266,
+    "D_median_fast_comp": 0.033361966547896,
+    "punish_share_slow_rigid_mean": 0.14540740740740743,
+    "B0_median_slow_rigid": 1.7965054591899228,
+    "B0_median_slow_comp": 1.4707524836771155
+  }
+}
