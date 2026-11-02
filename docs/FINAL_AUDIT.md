@@ -70,7 +70,9 @@ Script: `experiments/audit_h2_auc.py`. It re-runs the existing code with the add
 
 ## 4. Closest work: claim-by-claim comparison
 
-Belal's material was read from the public replication repository `alibelal-lang/algorithmic_collusion` (commit 23867f3, 11 Aug 2026): write-ups part3, part6, part10, part15, part18, and `env.py`. The SSRN record ID is **unresolved**: search results give 7267038, the external review gives 7266558, and a fetch of 7266558 returned an unrelated paper. Verify before citing.
+Belal's material was read from the public replication repository [alibelal-lang/algorithmic_collusion](https://github.com/alibelal-lang/algorithmic_collusion) (commit 23867f3, 11 Aug 2026): write-ups part3, part6, part10, part15, part18, and `env.py`.
+
+**Citation (REPORTED by the team, 2 Nov 2026):** Ali Belal, *Intervention, Not Inference: The Identification of Algorithmic Collusion*, SSRN abstract ID **7266558** (https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7266558). Two 30-page versions were posted on 13 and 15 August 2026. The ID 7267038 seen in earlier search results is not the record to cite. SSRN still blocks automated access here, so the full text remains unread by me.
 
 | Our claim | Belal 2026 | Others | Verdict |
 |---|---|---|---|
@@ -98,7 +100,7 @@ Other closest work, VERIFIED unless marked:
 | [Eschenbaum & Meylahn 2026, arXiv 2608.07098](https://arxiv.org/abs/2608.07098) | Audits frozen strategy graphs, not outcomes. |
 | [de Moraes & De Losso 2026, arXiv 2610.21867](https://arxiv.org/html/2610.21867) | Drop-and-return after a forced cut is not evidence of punishment. |
 | [Bresnahan 1982](https://ideas.repec.org/a/eee/ecolet/v10y1982i1-2p87-92.html) | Conduct identified by demand rotations, not parallel shifts. VERIFIED from a reprint. |
-| [Lau 1982](https://ideas.repec.org/a/eee/ecolet/v10y1982i1-2p93-99.html) | General identification conditions. **Bibliographic record only; full text not read.** |
+| [Lau 1982](https://ideas.repec.org/a/eee/ecolet/v10y1982i1-2p93-99.html), *On Identifying the Degree of Competitiveness from Industry Price and Output Data*, Economics Letters 10, 93-99 | Identification of industry conduct from price and output data, under restrictions on the inverse demand and cost functions. Cite it only for conduct identification; it is **not** a reference for the uniqueness of logit-Bertrand equilibrium (which we no longer claim). Bibliographic record only; full text not read. |
 
 ## 5. Verdict on novelty and publication
 
@@ -129,8 +131,8 @@ Other closest work, VERIFIED unless marked:
 
 ## 6. Remaining gaps
 1. Read Belal's **full paper** once the PDF is available. The repository write-ups may differ from the final text.
-2. Verify the correct SSRN ID and the title; check for a newer version.
-3. Read Lau (1982) in full; add one verified citation for logit-Bertrand equilibrium uniqueness only if the paper still mentions uniqueness.
+2. ~~Verify the correct SSRN ID~~: 7266558, versions of 13 and 15 Aug 2026 (team-verified). Cite the 15 August version unless a newer one appears.
+3. Read Lau (1982) in full for the conduct-identification discussion. No uniqueness citation is needed: the proposition no longer claims uniqueness (§3).
 4. Run a slow **rigid** cartel against slow competitors (only the tracking cartel was run slow).
 5. The auditor ladder assumes known attractiveness levels: D uses the shares themselves, but the paper must state this assumption.
 6. Option B is unrun; its kill criterion is fixed above.
