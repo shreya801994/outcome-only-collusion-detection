@@ -1,0 +1,9 @@
+competitive_baseline.csv           max error simultaneous=2.76e-07  sequential=5.20e-14
+competitive_cost_gap_0.1.csv       max error simultaneous=8.87e-03  sequential=1.50e-13
+competitive_cost_gap_0.3.csv       max error simultaneous=2.23e-02  sequential=1.14e-13
+competitive_cost_gap_0.6.csv       max error simultaneous=2.67e-02  sequential=7.39e-13
+competitive_demand_shocks.csv      max error simultaneous=6.95e-14  sequential=2.76e-07
+researcher_trajectories run  1            max error simultaneous=5.20e-14  sequential=2.76e-07
+researcher_trajectories run  6            max error simultaneous=1.51e-13  sequential=8.87e-03
+researcher_trajectories run 11            max error simultaneous=1.14e-13  sequential=2.23e-02
+researcher_trajectories run 16            max error simultaneous=7.39e-13  sequential=2.67e-02

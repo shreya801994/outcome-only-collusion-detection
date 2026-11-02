@@ -1,0 +1,24 @@
+data/auditor_trajectories.csv: columns=['period', 'price_1', 'price_2', 'quantity_1', 'quantity_2', 'run_id']
+    run_id blocks by hidden cost gap: {0.0: {'min': 1, 'max': 5, 'count': 5}, 0.1: {'min': 6, 'max': 10, 'count': 5}, 0.3: {'min': 11, 'max': 15, 'count': 5}, 0.6: {'min': 16, 'max': 20, 'count': 5}}; contiguous=True
+    public columns equal to researcher file row-by-row: True
+data/reactive_auditor_trajectories.csv: columns=['run_id', 'period', 'price_1', 'price_2', 'quantity_1', 'quantity_2']
+    run_id blocks by hidden cost gap: {0.0: {'min': 1, 'max': 100, 'count': 100}, 0.1: {'min': 101, 'max': 200, 'count': 100}, 0.3: {'min': 201, 'max': 300, 'count': 100}, 0.6: {'min': 301, 'max': 400, 'count': 100}}; contiguous=True
+    public columns equal to researcher file row-by-row: True
+data/reactive_shock_auditor_trajectories.csv: columns=['run_id', 'period', 'price_1', 'price_2', 'quantity_1', 'quantity_2']
+    run_id blocks by hidden cost gap: {0.0: {'min': 1, 'max': 5, 'count': 5}, 0.1: {'min': 6, 'max': 10, 'count': 5}, 0.3: {'min': 11, 'max': 15, 'count': 5}, 0.6: {'min': 16, 'max': 20, 'count': 5}}; contiguous=True
+    public columns equal to researcher file row-by-row: True
+data/dynamic_auditor_trajectories.csv: columns=['period', 'price_1', 'price_2', 'quantity_1', 'quantity_2', 'run_id']
+    run_id blocks by hidden cost gap: {0.0: {'min': 1, 'max': 5, 'count': 5}, 0.1: {'min': 6, 'max': 10, 'count': 5}, 0.3: {'min': 11, 'max': 15, 'count': 5}, 0.6: {'min': 16, 'max': 20, 'count': 5}}; contiguous=True
+    public columns equal to researcher file row-by-row: True
+data/collusion_deviation_auditor.csv: columns=['period', 'price_1', 'price_2', 'quantity_1', 'quantity_2']
+    public columns equal to researcher file row-by-row: True
+
+data/dynamic_researcher_trajectories.csv: max |Q_hat - market_size| using known demand parameters = 1.11e-15
+data/reactive_shock_researcher_trajectories.csv: max |Q_hat - market_size| using known demand parameters = 1.11e-15
+data/competitive_demand_shocks.csv: max |Q_hat - market_size| using known demand parameters = 1.33e-15
+
+detectors/__init__.py reads columns: []
+detectors/deviation_response.py reads columns: ['period', 'price_1', 'price_2']
+detectors/directional_dependence.py reads columns: ['period', 'price_1', 'price_2']
+detectors/price_level.py reads columns: ['period', 'price_1', 'price_2']
+detectors/synchronization.py reads columns: ['period', 'price_1', 'price_2']

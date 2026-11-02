@@ -1,0 +1,27 @@
+--- data/competitive_demand_shocks.csv: runs=1; market_size values=[np.float64(0.8), np.float64(1.0), np.float64(1.2)]
+      share_periods_shocked  lag1_autocorr_Q  corr(dQ_t, dp1_t)  corr(dQ_t, dp2_t)  corr(dQ_t, dp1_t+1)  corr(dQ_t, dp2_t+1)  corr(dp1_t, dp2_t)  max|p1 - mean p1|
+mean                0.09667         -0.06909          -0.004981          -0.004981            -0.004981            -0.004981                   1          1.124e-06
+min                 0.09667         -0.06909          -0.004981          -0.004981            -0.004981            -0.004981                   1          1.124e-06
+max                 0.09667         -0.06909          -0.004981          -0.004981            -0.004981            -0.004981                   1          1.124e-06
+--- data/reactive_shock_researcher_trajectories.csv: runs=20; market_size values=[np.float64(0.8), np.float64(1.0), np.float64(1.2)]
+      share_periods_shocked  lag1_autocorr_Q  corr(dQ_t, dp1_t)  corr(dQ_t, dp2_t)  corr(dQ_t, dp1_t+1)  corr(dQ_t, dp2_t+1)  corr(dp1_t, dp2_t)  max|p1 - mean p1|
+mean                0.09567       -0.0005658           -0.02076           0.007426             -0.01542             0.003806            -0.09677            0.08931
+min                    0.07         -0.05924            -0.1137           -0.09374              -0.1511              -0.1302             -0.2108            0.03401
+max                  0.1267           0.1204             0.1087             0.1015              0.07188               0.1155             0.04576             0.1883
+--- data/dynamic_researcher_trajectories.csv: runs=20; market_size values=[np.float64(0.8), np.float64(1.0), np.float64(1.2)]
+      share_periods_shocked  lag1_autocorr_Q  corr(dQ_t, dp1_t)  corr(dQ_t, dp2_t)  corr(dQ_t, dp1_t+1)  corr(dQ_t, dp2_t+1)  corr(dp1_t, dp2_t)  max|p1 - mean p1|
+mean                 0.1007         -0.02149               0.63             0.7383               -0.067             -0.08349              0.5984            0.06106
+min                    0.05          -0.1036             0.4883             0.6211              -0.2007              -0.1663              0.4177            0.04493
+max                    0.13          0.08765             0.7163             0.7895               0.0575              0.02953              0.6648            0.09976
+--- data/adaptive_competitive_demand_shocks.csv: runs=1; market_size values=[np.float64(0.8), np.float64(1.0), np.float64(1.2)]
+      share_periods_shocked  lag1_autocorr_Q  corr(dQ_t, dp1_t)  corr(dQ_t, dp2_t)  corr(dQ_t, dp1_t+1)  corr(dQ_t, dp2_t+1)  corr(dp1_t, dp2_t)  max|p1 - mean p1|
+mean                   0.24         -0.03722                  1                  1              -0.5203              -0.5203                   1            0.08373
+min                    0.24         -0.03722                  1                  1              -0.5203              -0.5203                   1            0.08373
+max                    0.24         -0.03722                  1                  1              -0.5203              -0.5203                   1            0.08373
+--- data/adaptive_heterogeneous_demand_shocks.csv: runs=1; market_size values=[np.float64(0.8), np.float64(1.0), np.float64(1.2)]
+      share_periods_shocked  lag1_autocorr_Q  corr(dQ_t, dp1_t)  corr(dQ_t, dp2_t)  corr(dQ_t, dp1_t+1)  corr(dQ_t, dp2_t+1)  corr(dp1_t, dp2_t)  max|p1 - mean p1|
+mean                   0.24         -0.03722                  1                  1              -0.5203              -0.5203                   1             0.1047
+min                    0.24         -0.03722                  1                  1              -0.5203              -0.5203                   1             0.1047
+max                    0.24         -0.03722                  1                  1              -0.5203              -0.5203                   1             0.1047
+
+reactive shock data: shock spell lengths (periods) distribution: {1: 510, 2: 28, 3: 1, 5: 1}

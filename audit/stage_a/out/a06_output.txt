@@ -1,0 +1,17 @@
+reactive_researcher_trajectories.csv: runs checked=400; runs whose implied noise equals the seeded draws (<1e-6): 399; worst max diff=1.34e-06; implied-noise SD range=(0.0087,0.0115)
+b0_calibration_runs.csv: runs checked=100; runs whose implied noise equals the seeded draws (<1e-6): 100; worst max diff=2.99e-12; implied-noise SD range=(0.0084,0.0114)
+reactive_shock_researcher_trajectories.csv: runs checked=20; runs whose implied noise equals the seeded draws (<1e-6): 20; worst max diff=5.28e-12; implied-noise SD range=(0.0093,0.0106)
+reactive+shock market_size sequences matching generator seed 5000+run_id: 20/20
+dynamic_researcher_trajectories.csv: runs matching committed adaptive rule + seeds: 20/20; market_size sequences matching seed 12000+r: 20/20
+adaptive_competitive_demand_shocks.csv: market_size equals seed-42/p=0.20 sequence: True; price = BASE + s*(Q-1) exactly with s1=[0.4], s2=[0.6]; price when Q=1: [1.472927] (committed adaptive rule has partial adjustment 0.4 and noise 0.01, so it cannot produce a 3-valued path)
+adaptive_heterogeneous_demand_shocks.csv: market_size equals seed-42/p=0.20 sequence: True; price = BASE + s*(Q-1) exactly with s1=[0.5], s2=[0.5]; price when Q=1: [1.472927] (committed adaptive rule has partial adjustment 0.4 and noise 0.01, so it cannot produce a 3-valued path)
+competitive_cost_gap_0.0.csv: max |p_t+1 - BR(p_rival_t)| on sampled periods = 2.76e-07
+competitive_cost_gap_0.1.csv: max |p_t+1 - BR(p_rival_t)| on sampled periods = 2.43e-07
+competitive_cost_gap_0.3.csv: max |p_t+1 - BR(p_rival_t)| on sampled periods = 1.75e-07
+competitive_cost_gap_0.6.csv: max |p_t+1 - BR(p_rival_t)| on sampled periods = 8.36e-08
+competitive_demand_shocks.csv: max |p_t+1 - BR(p_rival_t)| on sampled periods = 3.93e-14
+researcher_trajectories gap 0.0: all 5 runs identical to competitive_cost_gap_0.0.csv: False
+researcher_trajectories gap 0.1: all 5 runs identical to competitive_cost_gap_0.1.csv: False
+researcher_trajectories gap 0.3: all 5 runs identical to competitive_cost_gap_0.3.csv: False
+researcher_trajectories gap 0.6: all 5 runs identical to competitive_cost_gap_0.6.csv: False
+collusive_deviation_response.csv is the firm-swapped mirror of collusion_deviation_researcher.csv: False

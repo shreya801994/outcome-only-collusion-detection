@@ -1,0 +1,34 @@
+{
+  "K1": {
+    "rule": "E2 L3 pooled AUC(D) tracking vs competitive >= 0.80",
+    "value": 0.9999039780521262,
+    "pass": true
+  },
+  "K2": {
+    "rule": "E0 and E1 L3 pooled AUC(D) rigid vs competitive <= 0.65",
+    "value": {
+      "E0": 0.6119478737997257,
+      "E1": 0.5877777777777777
+    },
+    "pass": true
+  },
+  "K3": {
+    "rule": "E0 within-cell minus pooled AUC(B0), rigid vs competitive >= 0.10",
+    "value": 0.01031550068587106,
+    "pass": false
+  },
+  "K4": {
+    "rule": "E3 AUC(D,L3) - AUC(D,L2), tracking >= 0.10",
+    "value": 0.18858710562414271,
+    "pass": true
+  },
+  "K5_naive_B0_fpr": {
+    "rule": "naive-baseline B0 test FPR Wilson CI contains 0.05",
+    "value": [
+      0.06,
+      0.03465219425433187,
+      0.1019316929576627
+    ],
+    "pass": true
+  }
+}
