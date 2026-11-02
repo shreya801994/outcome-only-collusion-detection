@@ -1,0 +1,11 @@
+1) max |finite-difference dPi/dp1 - s1[1-(m1-sum m s)/mu]| over 1000 random points: 4.7e-10
+2) a=(2,2) c=(1,1): closed-form prices (1.9250,1.9250), markups equal: True, grid max - closed-form = -5.31e-10
+2) a=(2,2) c=(0.85,1.45): closed-form prices (1.7738,2.3738), markups equal: True, grid max - closed-form = -2.00e-06
+2) a=(2.3,1.8) c=(1,1.2): closed-form prices (2.0302,2.2302), markups equal: True, grid max - closed-form = -1.70e-06
+2) a=(1.7,2.4) c=(0.7,1.1): closed-form prices (1.7691,2.1691), markups equal: True, grid max - closed-form = -4.47e-06
+2) a=(2,2) c=(1.5,1.5): closed-form prices (2.0937,2.0937), markups equal: True, grid max - closed-form = -4.82e-06
+   worst grid excess over closed form (should be <= 0): -5.31e-10
+3) c=1.0, rival=1.5: max f' = -2.500e-03 (<0), f at p=c+1e-6: 1.0e+06, f at p=c+20: -3.9500, sign changes: 1
+3) c=0.3, rival=2.5: max f' = -2.500e-03 (<0), f at p=c+1e-6: 1.0e+06, f at p=c+20: -3.9500, sign changes: 1
+3) c=1.6, rival=1.0: max f' = -2.500e-03 (<0), f at p=c+1e-6: 1.0e+06, f at p=c+20: -3.9500, sign changes: 1
+4) adjustment speeds identical: True | max |price diff|: 0.0
