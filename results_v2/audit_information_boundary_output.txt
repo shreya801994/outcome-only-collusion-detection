@@ -1,0 +1,17 @@
+1) AUDITOR_LEVELS: {'L1': ('price',), 'L2': ('price', 'quantity'), 'L3': ('price', 'quantity', 'market_size')}
+   score_runs reads keys: ['market_size', 'price', 'quantity']
+   implied_cost.score signature: (price, quantity, mu=0.25, market_size=None, assumed_market_size=1.0)
+
+2) D from observed shares q/Q vs D from model shares s(p; a_t)
+   test_E2_competitive_grid           max |D(q/Q) - D(s(p;a))| = 5.0e-07 (float32 storage)
+   test_E2_collusive_tracking_grid    max |D(q/Q) - D(s(p;a))| = 7.2e-07 (float32 storage)
+   test_E3_collusive_rigid_grid       max |D(q/Q) - D(s(p;a))| = 1.2e-06 (float32 storage)
+
+3) D_L2 (market size assumed 1) vs D_L3 (market size observed)
+   E0: max |D_L2 - D_L3| = 0.00e+00
+   E1: max |D_L2 - D_L3| = 1.78e+00
+   E2: max |D_L2 - D_L3| = 0.00e+00
+   E3: max |D_L2 - D_L3| = 3.17e+00
+
+4) Outside share reconstructs market size
+   max relative error of Q = (q1+q2)/(1-s0): 2.4e-07
