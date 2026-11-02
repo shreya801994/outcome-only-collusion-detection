@@ -1,0 +1,21 @@
+1) Matched comparison: cartel vs competitors at the SAME (padded) true costs
+   B0    max |paired score difference| = 0.0e+00   AUC = 0.500
+   B1    max |paired score difference| = 0.0e+00   AUC = 0.500
+   B2    max |paired score difference| = 0.0e+00   AUC = 0.500
+   B3    max |paired score difference| = 0.0e+00   AUC = 0.500
+   D_L3  max |paired score difference| = 0.0e+00   AUC = 0.500
+   stored H2 cartel scores reproduced: True
+
+2) Pre-registered H2 comparison: cartel (effective cost c+m) vs competitors at TRUE cost c
+   positive label = collusive_cost_padding; higher score = more suspicious (D, B1, B2, B3)
+   mean cost: cartel effective 1.351 vs competitors 1.000
+   D_L3: cartel median 0.0291, competitors median 0.0326, AUC 0.378
+   B1: cartel median -0.2646, competitors median -0.4484, AUC 0.836
+
+3) Main design, E2 competitive runs only: score by hidden mean cost (no collusion anywhere)
+             D_L3      B1
+cost_mean                
+0.85       0.0353 -0.5021
+1.00       0.0333 -0.4412
+1.15       0.0321 -0.3877
+   AUC(high-cost vs low-cost competitors): D 0.399, B1 0.762
