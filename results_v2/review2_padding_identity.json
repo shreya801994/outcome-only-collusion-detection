@@ -1,0 +1,7 @@
+{
+  "runs": 270,
+  "periods": 300,
+  "max_abs_price_diff": 0.0,
+  "max_abs_quantity_diff": 0.0,
+  "max_abs_market_size_diff": 0.0
+}
