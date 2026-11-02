@@ -12,6 +12,12 @@ competitive         target = static best response to the rival's last price
 competitive_nash    target = static Nash price of the current demand (an
                     alternative competitive dynamic: no reaction to the rival's
                     last price; used in the exploratory analysis S5).
+collusive_cost_padding
+                    both firms best-respond as if each marginal cost were
+                    c_i + m, with m ~ U[pad_low, pad_high] per run: a cartel that
+                    mimics higher-cost competition (no punishment).  By the
+                    equivalence result no outcome screen can separate it from
+                    competition at costs c_i + m (addendum 2, H2).
 collusive_rigid     target = fixed cooperative prices Nash + kappa*(joint - Nash)
                     computed once at mean demand (a = base attractiveness).
 collusive_tracking  same cooperative rule recomputed every period at current demand.
@@ -35,8 +41,9 @@ import numpy as np
 
 from simulator.equilibrium import best_response, joint_profit, nash, shares
 
-CONDUCTS = ("competitive", "collusive_rigid", "collusive_tracking", "competitive_nash")
+CONDUCTS = ("competitive", "collusive_rigid", "collusive_tracking", "competitive_nash", "collusive_cost_padding")
 COMPETITIVE = ("competitive", "competitive_nash")
+PUNISHING = ("collusive_rigid", "collusive_tracking")
 
 
 @dataclass(frozen=True)
@@ -51,6 +58,8 @@ class AgentParams:
     kappa_high: float = 1.0
     punish_low: int = 3
     punish_high: int = 8
+    pad_low: float = 0.2
+    pad_high: float = 0.5
     tolerance: float = 0.05
     price_min: float = 0.5
     price_max: float = 4.0
@@ -80,7 +89,10 @@ def simulate_batch(costs, a, q, conduct, params, rng_params, rng_noise, rng_trem
     lam = rng_params.uniform(params.adjust_low, params.adjust_high, size=(n_runs, 2))
     kappa = rng_params.uniform(params.kappa_low, params.kappa_high, size=n_runs)
     punish_len = rng_params.integers(params.punish_low, params.punish_high + 1, size=n_runs)
-    noise = rng_noise.normal(0.0, params.noise_sd, size=(n_runs, periods, 2))
+    if conduct == "collusive_cost_padding":  # drawn last, so other conducts' streams are unchanged
+        pad = rng_params.uniform(params.pad_low, params.pad_high, size=n_runs)
+        c1, c2 = c1 + pad, c2 + pad
+    noise =rng_noise.normal(0.0, params.noise_sd, size=(n_runs, periods, 2))
     tremble = rng_tremble.random(size=(n_runs, periods, 2)) < params.tremble_prob
     tremble_size = rng_tremble.uniform(params.tremble_low, params.tremble_high, size=(n_runs, periods, 2))
 
@@ -89,12 +101,12 @@ def simulate_batch(costs, a, q, conduct, params, rng_params, rng_noise, rng_trem
     expected = np.empty((n_runs, periods, 2))
     punishing = np.zeros((n_runs, periods), dtype=bool)
 
-    collusive = conduct not in COMPETITIVE
+    collusive = conduct in PUNISHING
     if conduct == "collusive_rigid":
         coop_static_1, coop_static_2, _, _ = _cooperative(c1, c2, base_a, base_a, kappa, a0, mu)
 
     a1_0, a2_0 = a[:, 0, 0], a[:, 0, 1]
-    if conduct in COMPETITIVE:
+    if conduct in COMPETITIVE or conduct == "collusive_cost_padding":
         prev1, prev2 = nash(c1, c2, a1_0, a2_0, a0, mu)
     elif conduct == "collusive_rigid":
         prev1, prev2 = coop_static_1.copy(), coop_static_2.copy()
@@ -104,7 +116,7 @@ def simulate_batch(costs, a, q, conduct, params, rng_params, rng_noise, rng_trem
     punish_left = np.zeros(n_runs, dtype=int)
     for t in range(periods):
         a1t, a2t = a[:, t, 0], a[:, t, 1]
-        if conduct == "competitive":
+        if conduct in ("competitive", "collusive_cost_padding"):
             tgt1 = best_response(c1, a1t, prev2, a2t, a0, mu)
             tgt2 = best_response(c2, a2t, prev1, a1t, a0, mu)
         elif conduct == "competitive_nash":
@@ -145,7 +157,8 @@ def simulate_batch(costs, a, q, conduct, params, rng_params, rng_noise, rng_trem
         "quantity": quantity,
         "market_size": np.asarray(q, dtype=float),
         # researcher-only fields
-        "cost": costs,
+        "cost": costs,  # true costs (before any padding)
+        "cost_pad": pad if conduct == "collusive_cost_padding" else np.zeros(n_runs),
         "attractiveness": a,
         "conduct": conduct,
         "adjust_speed": lam,
