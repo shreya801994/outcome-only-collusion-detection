@@ -1,0 +1,18 @@
+/home/claude/shreya801994/outcome-only-collusion-detection/analysis_scratch/a08_figures_and_attractiveness.py:25: RuntimeWarning: The iteration is not making good progress, as measured by the 
+ improvement from the last ten iterations.
+  return fsolve(foc, [1.5, 1.5], xtol=1e-13)
+Wilson 95% for x/n: {'0/5': (0, np.float64(0.4345)), '5/5': (np.float64(0.5655), 1), '2/100': (np.float64(0.0055), np.float64(0.07)), '100/100': (np.float64(0.963), np.float64(1.0))}
+reactive mean prices by gap (data behind hard_negative_cost_asymmetry.png):
+          price_1  price_2
+cost_gap                  
+0.0        1.4730   1.4731
+0.1        1.5014   1.5393
+0.3        1.5632   1.6820
+0.6        1.6593   1.9197
+Nash prices, baseline                                : (1.472927, 1.472927)
+Nash prices, Q=1.2                                   : (1.472927, 1.472927)
+Nash prices, Q=0.8                                   : (1.472927, 1.472927)
+Nash prices, a1=a2=2.2 (common attractiveness +0.2)  : (1.486387, 1.486387)
+Nash prices, a1=a2=1.8                               : (1.450471, 1.450471)
+Nash prices, a0=0.2 (outside option +0.2)            : (1.450471, 1.450471)
+Nash prices, a1=2.2 only (product-specific)          : (1.552790, 1.424528)

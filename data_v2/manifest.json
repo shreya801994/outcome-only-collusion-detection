@@ -1,0 +1,324 @@
+{
+  "design": "docs/V2_DESIGN.md",
+  "periods": 300,
+  "burn_in": 50,
+  "mu": 0.25,
+  "cost_means": [
+    0.85,
+    1.0,
+    1.15
+  ],
+  "cost_gaps": [
+    0.0,
+    0.3,
+    0.6
+  ],
+  "runs_per_cost_cell": 30,
+  "agent_params": {
+    "adjust_low": 0.5,
+    "adjust_high": 1.0,
+    "noise_sd": 0.01,
+    "tremble_prob": 0.01,
+    "tremble_low": 0.1,
+    "tremble_high": 0.25,
+    "kappa_low": 0.5,
+    "kappa_high": 1.0,
+    "punish_low": 3,
+    "punish_high": 8,
+    "tolerance": 0.05,
+    "price_min": 0.5,
+    "price_max": 4.0
+  },
+  "environments": {
+    "E0": {
+      "common_sd": 0.0,
+      "idio_sd": 0.0,
+      "log_size_sd": 0.0,
+      "rho": 0.95,
+      "base_a": 2.0,
+      "base_q": 1.0
+    },
+    "E1": {
+      "common_sd": 0.0,
+      "idio_sd": 0.0,
+      "log_size_sd": 0.2,
+      "rho": 0.95,
+      "base_a": 2.0,
+      "base_q": 1.0
+    },
+    "E2": {
+      "common_sd": 0.25,
+      "idio_sd": 0.15,
+      "log_size_sd": 0.0,
+      "rho": 0.95,
+      "base_a": 2.0,
+      "base_q": 1.0
+    },
+    "E3": {
+      "common_sd": 0.25,
+      "idio_sd": 0.15,
+      "log_size_sd": 0.2,
+      "rho": 0.95,
+      "base_a": 2.0,
+      "base_q": 1.0
+    }
+  },
+  "cells": [
+    {
+      "cell": "calibration_E0_competitive_naive",
+      "split": "calibration",
+      "env": "E0",
+      "conduct": "competitive",
+      "cost_mode": "naive",
+      "runs": 200,
+      "base_seed": 20261102,
+      "spawn_key": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "cell": "test_E0_competitive_naive",
+      "split": "test",
+      "env": "E0",
+      "conduct": "competitive",
+      "cost_mode": "naive",
+      "runs": 200,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "cell": "calibration_E0_competitive_grid",
+      "split": "calibration",
+      "env": "E0",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "calibration_E1_competitive_grid",
+      "split": "calibration",
+      "env": "E1",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "calibration_E2_competitive_grid",
+      "split": "calibration",
+      "env": "E2",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        0,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "calibration_E3_competitive_grid",
+      "split": "calibration",
+      "env": "E3",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        0,
+        3,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "test_E0_competitive_grid",
+      "split": "test",
+      "env": "E0",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "test_E0_collusive_rigid_grid",
+      "split": "test",
+      "env": "E0",
+      "conduct": "collusive_rigid",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "cell": "test_E1_competitive_grid",
+      "split": "test",
+      "env": "E1",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "test_E1_collusive_rigid_grid",
+      "split": "test",
+      "env": "E1",
+      "conduct": "collusive_rigid",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "cell": "test_E2_competitive_grid",
+      "split": "test",
+      "env": "E2",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "test_E2_collusive_rigid_grid",
+      "split": "test",
+      "env": "E2",
+      "conduct": "collusive_rigid",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "cell": "test_E2_collusive_tracking_grid",
+      "split": "test",
+      "env": "E2",
+      "conduct": "collusive_tracking",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "cell": "test_E3_competitive_grid",
+      "split": "test",
+      "env": "E3",
+      "conduct": "competitive",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        3,
+        0,
+        1
+      ]
+    },
+    {
+      "cell": "test_E3_collusive_rigid_grid",
+      "split": "test",
+      "env": "E3",
+      "conduct": "collusive_rigid",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "cell": "test_E3_collusive_tracking_grid",
+      "split": "test",
+      "env": "E3",
+      "conduct": "collusive_tracking",
+      "cost_mode": "grid",
+      "runs": 270,
+      "base_seed": 20261102,
+      "spawn_key": [
+        1,
+        3,
+        2,
+        1
+      ]
+    }
+  ],
+  "code_sha256_16": {
+    "simulator/equilibrium.py": "d1914d7ee92974a3",
+    "simulator/demand_shocks.py": "ff96a0fa9e1d4c45",
+    "simulator/batch_sim.py": "5606a40cee81e760",
+    "detectors/implied_cost.py": "fd3874c74161a885",
+    "detectors/price_level.py": "c9837c88b94b1b2e",
+    "detectors/synchronization.py": "ed09a4c0e5fba5cb",
+    "detectors/directional_dependence.py": "d808774d7638cb2a",
+    "detectors/deviation_response.py": "229ae8b335a294c4",
+    "experiments/v2_run_all.py": "9882d89ca140cbe7"
+  },
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "pandas": "3.0.5",
+  "scipy": "1.18.1",
+  "runtime_seconds": 34.0
+}

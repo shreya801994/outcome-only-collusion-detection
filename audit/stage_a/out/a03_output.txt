@@ -1,0 +1,18 @@
+CALIBRATION (data/b0_calibration_runs.csv)
+  runs=100  mean=1.4730067  sd(ddof=1)=0.0017807  min=1.4680429  max=1.4774042
+  95th percentile (np.quantile, linear) = 1.4763064258; stored threshold = 1.4763064258; diff = -9.46e-12
+  threshold - symmetric Nash mean price (1.472928) = 0.003378
+  calibration scores above stored threshold: 5 / 100 (in-sample, by construction about 5)
+
+EVALUATION (data/reactive_auditor_trajectories.csv): runs=400; max |own - repo B0| = 0.00e+00
+  max |recomputed - stored b0_score| = 2.22e-16; flag mismatches = 0
+ cost_gap  runs  flagged  FPR  wilson_lo  wilson_hi      cp_lo     cp_hi  b0_mean      b0_sd  b0_min  b0_max  nash_mean_price  nash_mean_minus_thr  min_score_minus_thr_in_cal_sd
+        0   100        2 0.02 0.00550197  0.0700118 0.00243134 0.0703839  1.47305 0.00177126 1.46879 1.47654          1.47293          -0.00337843                       -4.22206
+      0.1   100      100    1   0.963007          1   0.963783         1  1.52033 0.00168167 1.51618 1.52331          1.52015            0.0438416                         22.393
+      0.3   100      100    1   0.963007          1   0.963783         1  1.62263 0.00149808 1.61777 1.62648          1.62308             0.146776                        79.4412
+      0.6   100      100    1   0.963007          1   0.963783         1   1.7895 0.00139676  1.7861 1.79317          1.79012             0.313815                        173.973
+
+vs stored results/b0_fpr_summary.csv: max |FPR diff| = 0.00e+00, max |Wilson lo diff| = 1.31e-06, max |Wilson hi diff| = 1.37e-06
+
+Gap-0 evaluation scores: mean=1.4730536 sd=0.0017713 (calibration mean=1.4730067)
+Identical full trajectories shared by calibration and evaluation: 0

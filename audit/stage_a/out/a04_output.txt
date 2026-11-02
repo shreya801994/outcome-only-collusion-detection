@@ -1,0 +1,70 @@
+/usr/local/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py:3036: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/usr/local/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py:3036: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+====================================================================================================
+1) Recompute vs stored
+detector_scores.csv: rows=20; max |recomputed - stored| per score: {'B0': 0.0, 'B1': 2.55351295663786e-15}
+reactive_detector_scores.csv: rows=400; max |recomputed - stored| per score: {'B0': 2.220446049250313e-16, 'B1': 3.3306690738754696e-16, 'B2': 3.608224830031759e-16, 'B3': 0.0}
+dynamic_detector_scores.csv: rows=20; max |recomputed - stored| per score: {'B0': 2.220446049250313e-16, 'B1': 8.881784197001252e-16, 'B2': 1.942890293094024e-16}
+reactive_shock_auditor_trajectories.csv: no stored score file contains these runs (results/reactive_detector_scores.csv has 400 rows, condition='reactive_competitive' only)
+====================================================================================================
+2) Score summaries by cost gap (labels joined after scoring)
+--- static (auditor_trajectories)
+              B0                              B1                                   B2                         B3            
+            mean std     min     max        mean std         min         max     mean std      min      max mean std min max
+cost_gap                                                                                                                    
+0.0      1.47293   0 1.47293 1.47293           1   0           1           1        1   0        1        1    0   0   0   0
+0.1      1.51988   0 1.51988 1.51988 -0.00462014   0 -0.00462014 -0.00462014 0.999999   0 0.999999 0.999999    0   0   0   0
+0.3      1.62229   0 1.62229 1.62229 -0.00428739   0 -0.00428739 -0.00428739        1   0        1        1    0   0   0   0
+0.6      1.78861   0 1.78861 1.78861 -0.00378018   0 -0.00378018 -0.00378018 0.999967   0 0.999967 0.999967    0   0   0   0
+--- reactive (reactive_auditor_trajectories)
+              B0                                    B1                                     B2                                B3            
+            mean        std     min     max       mean       std       min       max     mean       std       min      max mean std min max
+cost_gap                                                                                                                                   
+0.0      1.47305 0.00177126 1.46879 1.47654  -0.105851 0.0586523 -0.234248 0.0145032 0.141606 0.0493987 0.0280671 0.288128    0   0   0   0
+0.1      1.52033 0.00168167 1.51618 1.52331 -0.0980786 0.0538492 -0.234285 0.0482757 0.141112 0.0433617 0.0588156 0.231335    0   0   0   0
+0.3      1.62263 0.00149808 1.61777 1.62648 -0.0792395  0.052306 -0.214448 0.0366274 0.134145 0.0476093  0.045879  0.27805    0   0   0   0
+0.6       1.7895 0.00139676  1.7861 1.79317 -0.0573294 0.0568688 -0.199945  0.101452  0.12422 0.0542412 -0.027013  0.27881    0   0   0   0
+--- reactive+shock (reactive_shock_auditor_trajectories)
+              B0                                    B1                                       B2                                B3            
+            mean        std     min     max       mean       std       min         max     mean       std       min      max mean std min max
+cost_gap                                                                                                                                     
+0.0      1.47117  0.0011596 1.46962 1.47235  -0.111605 0.0744872 -0.210798 -0.00388357 0.172377 0.0551999  0.111827 0.241367    0   0   0   0
+0.1      1.52094 0.00137631 1.51933 1.52307 -0.0900556 0.0820509 -0.185754 -0.00448024 0.109501 0.0563954 0.0418354 0.188787    0   0   0   0
+0.3       1.6221 0.00145322 1.62004 1.62408  -0.119891 0.0285234 -0.153379  -0.0816482 0.126569 0.0360226 0.0865798 0.180214    0   0   0   0
+0.6      1.79029 0.00147126 1.78785 1.79162 -0.0655162 0.0858605 -0.152356   0.0457625 0.147137 0.0720607 0.0733907 0.230269    0   0   0   0
+--- adaptive+shock (dynamic_auditor_trajectories)
+              B0                                   B1                                     B2                                   B3            
+            mean         std     min     max     mean       std      min      max       mean       std       min         max mean std min max
+cost_gap                                                                                                                                     
+0.0      1.47199 0.000951199  1.4705 1.47315 0.632204 0.0467178 0.554025 0.664784  -0.096439 0.0632189 -0.162606  0.00343434    0   0   0   0
+0.1      1.47068  0.00140162 1.46912 1.47241 0.592252 0.0734839 0.466963 0.654673 -0.0821253 0.0528922 -0.145956  -0.0114009    0   0   0   0
+0.3      1.47412  0.00328192 1.47045 1.47842 0.584405  0.038601 0.545516 0.642941 -0.0977178 0.0461654 -0.159287  -0.0527544    0   0   0   0
+0.6      1.47334  0.00189711 1.47039 1.47501 0.584557 0.0976628 0.417739 0.661421 -0.0894802 0.0534372 -0.137138 -0.00481167    0   0   0   0
+====================================================================================================
+3) Positive-control series (single trajectories, no run_id)
+collusive_reward_punishment.csv: periods=300 B0=1.900000 B1=0.000000 B2=0.000000 B2(1->2,2->1)=(0.0, 0.0) B3=0.000000
+collusion_deviation_auditor.csv: periods=80 B0=1.846875 B1=-0.264999 B2=0.847998 B2(1->2,2->1)=(0.264999, 0.847998) B3=0.500000
+collusive_deviation_response.csv: periods=80 B0=1.846875 B1=-0.264999 B2=0.847998 B2(1->2,2->1)=(0.847998, 0.264999) B3=0.500000
+collusion_deviation_researcher.csv vs collusive_deviation_response.csv: identical prices/quantities = False; forced_deviation periods: [30] vs [30]
+price path around the deviation (periods 28-40):
+period   28.0  29.0  30.0  31.0  32.0  33.0  34.0  35.0  36.0  37.0  38.0  39.0  40.0
+price_1   1.9   1.9   1.9   1.4   1.9   1.1   1.1   1.1   1.1   1.1   1.9   1.9   1.9
+price_2   1.9   1.9   1.9   1.9   1.1   1.1   1.1   1.1   1.1   1.9   1.9   1.9   1.9
+====================================================================================================
+4) Reactive trigger and B3 event frequency in recorded reactive data
+reactive: firm-price changes observed=239200; changes < -0.05 (reactive trigger): 0; changes < -0.10 (B3 event): 0; SD of changes firm1=0.01257 firm2=0.01122
+reactive+shock: firm-price changes observed=11960; changes < -0.05 (reactive trigger): 0; changes < -0.10 (B3 event): 0; SD of changes firm1=0.01249 firm2=0.01130
+adaptive+shock: changes < -0.10: 0 of 11960
+====================================================================================================
+5) Edge cases with the repository's detector functions
+constant prices: B0=1.9000000000000004 B1=0.0 B2=0.0 B3=0.0
+constant + identical 1e-12 jitter on both firms: B1=1.000000
+constant + independent 1e-12 jitter: B1=0.270579
+single permanent cut by firm 1 (0.2) with no rival response: B3=0.0
+same, rival lowers price by 1e-9 next period: B3=1.0
+run 1 reactive, rows shuffled vs sorted: B1 0.4212 vs -0.1312; B2 -0.2278 vs 0.1944
+2 observations: B1 raises ValueError: At least three observations are required to calculate synchronization.
+2 observations: B2 raises ValueError: At least four observations are required for directional dependence.
+2 observations: B3=0.0

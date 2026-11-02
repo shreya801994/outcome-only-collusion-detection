@@ -1,0 +1,42 @@
+==========================================================================================
+Item 1: MarketConfig defaults
+MarketConfig(Q=1.0, a0=0.0, a1=2.0, a2=2.0, mu=0.25)
+shares at (1.5,1.7): s1=0.631049 s2=0.283548 outside=0.085403  (outside share > 0 => outside good included)
+manual logit: e1=7.389056 e2=3.320117 e0=1.000000 s1=0.631049
+==========================================================================================
+Item 2: implied cost c_hat = p - mu/(1-s) at reference equilibrium prices
+ cost_gap  c1  c2   ref_p1   ref_p2    c1_hat   c2_hat        err_c1        err_c2  foc_nash_p1  foc_nash_p2  ref_minus_foc_p1  ref_minus_foc_p2  iterBR_p1  iterBR_p2  mean_nash_price
+        0   1   1 1.472928 1.472928  1.000001 1.000001  1.469365e-06  1.469365e-06     1.472927     1.472927      1.339969e-06      1.339969e-06   1.472928   1.472928         1.472927
+      0.1   1 1.1 1.501191 1.539105  1.000002 1.099999  1.714757e-06 -1.023979e-06      1.50119     1.539105      7.214221e-07     -3.094934e-07   1.501191   1.539105         1.520148
+      0.3   1 1.3 1.563758 1.682407 0.9999978 1.299998 -2.168109e-06 -1.811735e-06      1.56376     1.682409     -1.693013e-06     -1.683469e-06   1.563758   1.682407         1.623084
+      0.6   1 1.6 1.659996 1.920246 0.9999973      1.6 -2.670805e-06 -1.961685e-07     1.659997     1.920246     -1.138233e-06     -3.518184e-07   1.659996   1.920246         1.790122
+max |implied-cost error| = 2.671e-06
+max |ref - FOC Nash| = 1.693e-06
+==========================================================================================
+Items 6/7: collusive outcome p=(1.9,1.9)
+share at 1.9 = 0.374487; implied cost c_hat = 1.500328
+FOC Nash at c_hat (symmetric): (1.900000, 1.900000), solver flag=1
+repo best_response(firm1, cost=c_hat, rival=1.9) = 1.900000
+grid argmax of firm-1 profit on (c_hat, 10], step 4.2e-04: 1.89981; profit at 1.9 = 0.14967192, max on grid = 0.14967189
+second derivative of own profit at 1.9 (finite diff) = -1.49795
+profit at prices <= c_hat is <= 0: profit(c_hat-0.1) = -0.08154
+true cost c=1: best response to rival 1.9 = 1.652616; profit(1.9)=0.337038, profit(BR)=0.402616
+joint-profit-maximising symmetric price at c=1: [1.92498091 1.92498092]
+Item 7: reference firm-2 price at gap 0.6 = 1.920246 vs collusive 1.9
+==========================================================================================
+Admissibility: implied cost from any interior price pair
+p=(1.2, 1.2): shares=(0.4900,0.4900) c_hat=(0.7098,0.7098)
+p=(1.0, 1.0): shares=(0.4955,0.4955) c_hat=(0.5045,0.5045)
+p=(0.6, 0.6): shares=(0.4991,0.4991) c_hat=(0.1009,0.1009)
+p=(0.3, 0.3): shares=(0.4997,0.4997) c_hat=(-0.1997,-0.1997)
+p=(2.5, 1.2): shares=(0.0053,0.9558) c_hat=(2.2487,-4.4520)
+==========================================================================================
+Items 8/9: market size Q
+Q=0.8: shares at (1.6,1.7) = (np.float64(0.5341262433055893), np.float64(0.3580355280014459)), repo BR(firm1,c=1,rival=1.4729)=1.4729281, reactive BR=1.4729270
+Q=1.0: shares at (1.6,1.7) = (np.float64(0.5341262433055893), np.float64(0.35803552800144595)), repo BR(firm1,c=1,rival=1.4729)=1.4729281, reactive BR=1.4729270
+Q=1.2: shares at (1.6,1.7) = (np.float64(0.5341262433055893), np.float64(0.35803552800144595)), repo BR(firm1,c=1,rival=1.4729)=1.4729281, reactive BR=1.4729270
+competitive_demand_shocks.csv, firm 1 implied cost:
+  using q/Q (true shares): min 1.000000 max 1.000002
+  using q with Q assumed 1: min 0.897353 max 1.071579
+  shares rebuilt from prices with known (a,a0,mu): max |s - q/Q| = 5.00e-16
+collusive_reward_punishment.csv: implied cost firm 1 from data: unique [1.500328]

@@ -1,0 +1,27 @@
+1) gap 0.0: max |researcher_trajectories run - competitive_cost_gap_0.0.csv| = 2.76e-07
+1) gap 0.1: max |researcher_trajectories run - competitive_cost_gap_0.1.csv| = 8.87e-03
+1) gap 0.3: max |researcher_trajectories run - competitive_cost_gap_0.3.csv| = 2.23e-02
+1) gap 0.6: max |researcher_trajectories run - competitive_cost_gap_0.6.csv| = 2.67e-02
+2) gap 0.6, periods 0-5:
+ t  researcher_p1  researcher_p2  gapfile_p1  gapfile_p2
+ 0       1.472927       1.472927    1.472927    1.472927
+ 1       1.472928       1.891744    1.472928    1.891744
+ 2       1.649551       1.891744    1.649551    1.918434
+ 3       1.649551       1.918434    1.659343    1.920132
+ 4       1.659343       1.918434    1.659955    1.920239
+ 5       1.659343       1.920132    1.659993    1.920246
+3) collusion_deviation_researcher.csv periods 28-40:
+period               28     29    30     31     32     33     34     35     36     37     38     39     40
+price_1             1.9    1.9   1.9    1.4    1.9    1.1    1.1    1.1    1.1    1.1    1.9    1.9    1.9
+price_2             1.9    1.9   1.9    1.9    1.1    1.1    1.1    1.1    1.1    1.9    1.9    1.9    1.9
+forced_deviation  False  False  True  False  False  False  False  False  False  False  False  False  False
+   collusive_deviation_response.csv periods 28-40:
+period               28     29    30     31     32     33     34     35     36     37     38     39     40
+price_1             1.9    1.9   1.9    1.1    1.1    1.1    1.1    1.1    1.9    1.9    1.9    1.9    1.9
+price_2             1.9    1.9   1.4    1.9    1.1    1.1    1.1    1.1    1.1    1.9    1.9    1.9    1.9
+forced_deviation  False  False  True  False  False  False  False  False  False  False  False  False  False
+4) base         FOC residuals at reported Nash prices: 3.7e-07, 3.7e-07
+4) a1=a2=2.2    FOC residuals at reported Nash prices: -8.9e-08, -8.9e-08
+4) a1=a2=1.8    FOC residuals at reported Nash prices: -1.9e-07, -1.9e-07
+4) a0=0.2       FOC residuals at reported Nash prices: -1.9e-07, -1.9e-07
+4) a1=2.2 only  FOC residuals at reported Nash prices: 4.5e-08, -6.0e-07
