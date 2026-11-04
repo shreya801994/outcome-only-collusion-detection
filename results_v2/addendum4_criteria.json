@@ -1,0 +1,70 @@
+{
+  "kill_criterion": "stop if, after estimating adjustment speed, AUC(slow cartel vs slow competitors) < 0.90 or FPR at a frozen threshold > 0.10",
+  "threshold_score_B": 1.4479041375946575,
+  "B1": {
+    "rule": "AUC(Score_B) SR vs SC >= 0.90",
+    "value": [
+      0.9768175582990398,
+      0.9638947187928669,
+      0.9873261316872428
+    ],
+    "pass": true
+  },
+  "B2": {
+    "rule": "FPR of SC at frozen Score_B threshold <= 0.10",
+    "value": [
+      0.04814814814814815,
+      0.028350915878327814,
+      0.08062257173456762
+    ],
+    "pass": true
+  },
+  "kill_triggered": false,
+  "report_only": {
+    "FPR_fast_test_competitors": 0.04814814814814815,
+    "CP_twin_max_price_difference": 0.0,
+    "estimation_accuracy": {
+      "SC": {
+        "c_abs_err_median": 0.056873130577311526,
+        "lambda_corr": 0.7725262624413612,
+        "lambda_err_median": -0.017249732020812765
+      },
+      "TEST_fast_comp": {
+        "c_abs_err_median": 0.009089103927682751,
+        "lambda_corr": 0.9696495227323487,
+        "lambda_err_median": -0.01542685243747044
+      },
+      "SR": {
+        "c_abs_err_median": 0.44674347665272485,
+        "lambda_corr": 0.1969098725837276,
+        "lambda_err_median": -0.0961430986338814
+      }
+    },
+    "mu_estimated_variant": {
+      "threshold": 2.5743810611119047,
+      "auc_pooled": 0.9644993141289437,
+      "FPR_SC": 0.003703703703703704,
+      "TPR_SR": 0.8111111111111111,
+      "mu_hat_median": {
+        "CAL_fast_comp": 0.225,
+        "SC": 0.15,
+        "SR": 0.15
+      },
+      "mu_hat_iqr": {
+        "CAL_fast_comp": [
+          0.225,
+          0.25
+        ],
+        "SC": [
+          0.15,
+          0.175
+        ],
+        "SR": [
+          0.15,
+          0.175
+        ]
+      }
+    }
+  },
+  "runtime_seconds": 1271.9
+}

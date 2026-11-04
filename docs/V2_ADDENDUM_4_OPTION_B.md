@@ -95,3 +95,45 @@ The development sample is small (45 per arm), so these numbers are not evidence.
 
 ## Results
 To be added below after the run, without changing anything above.
+
+## Results (NEW, added after the run; nothing above was changed)
+Runtime: 1,267 s on 2 CPUs. Outputs: `results_v2/addendum4_scores.csv`, `addendum4_metrics.csv`, `addendum4_criteria.json`, `addendum4_scores_mu_estimated.csv`, `addendum4_output.txt`. All earlier `results_v2/` and `data_v2/` files were checked unchanged with SHA-256.
+
+**Frozen threshold** (95th percentile of Score_B on the stored fast-competitor calibration split): **1.448**.
+
+### Decision rules
+| ID | Result | Verdict |
+|---|---|---|
+| **B1** | AUC(Score_B), slow rigid vs slow competitors = **0.977** [0.964, 0.987] | **pass** |
+| **B2** | slow competitors flagged at the frozen threshold: 13/270 = **0.048**, Wilson [0.028, 0.081] | **pass** |
+
+**The kill criterion is not triggered.** Option B is reported as a constructive result, within the scope stated above.
+
+### All contrasts (pooled AUC [95% CI]; TPR and FPR at the frozen threshold of each statistic)
+| Contrast | Score_B (primary) | γ+β test | Box–Pierce | D_L3 |
+|---|---|---|---|---|
+| slow rigid vs slow competitors | **0.977** [0.964, 0.987]; TPR 0.919, FPR 0.048 | 0.870 | 0.935 | 0.857; FPR 1.000 |
+| slow tracking vs slow competitors | **0.996**; TPR 0.978 | 0.319 | 0.978 | 0.814; FPR 1.000 |
+| fast rigid vs fast competitors (stored test) | 0.790; TPR 0.674 | 0.566 | 0.941 | (1.000, main design) |
+| fast tracking vs fast competitors (stored test) | 0.995; TPR 0.985 | 0.425 | 0.977 | (1.000, main design) |
+| **dynamics contrast:** slow vs fast competitors | **0.518** (FPR 0.048 for both) | 0.525 | 0.493 | **1.000** |
+| cost padding vs its coupled twin | **0.500** (identical paths, max difference 0.0) | 0.500 | 0.500 | 0.500 |
+| cost padding vs slow competitors | 0.509 | 0.476 | 0.534 | none |
+
+- **Estimation accuracy** (true values used for reporting only):
+  - ĉ median absolute error: 0.057 for slow competitors, 0.009 for fast;
+  - corr(λ̂, λ): 0.77 slow, 0.97 fast.
+- **μ-estimated variant** (report only):
+  - μ̂ is poorly identified: median 0.225 for fast competitors, but 0.15 (the grid floor) for slow competitors and slow cartels;
+  - even so, AUC 0.964 and FPR 0.004, with TPR 0.811 at its own frozen threshold (2.574).
+
+### Reading
+1. **The adjustment-speed confound that broke D is removed.**
+   - D separates slow from fast *honest* competitors perfectly (AUC 1.000) and flags every slow competitor.
+   - Score_B does not separate them (AUC 0.518), and a threshold calibrated on fast competitors keeps its 5% false-positive rate on slow ones (0.048).
+2. **Conduct power improves** at matched slow dynamics: AUC 0.977 vs D's 0.857 for the rigid cartel, and 0.996 vs 0.814 for the tracking cartel.
+3. **Weak spot: the fast rigid cartel** (AUC 0.790, TPR 0.674). With λ near 1, a fixed price plus i.i.d. noise leaves little serial dependence in the fitted residuals. Box–Pierce, the secondary statistic, does better there (0.941). This was not the pre-registered primary statistic, so it is reported, not substituted.
+4. **The cost-mimicking policy remains undetectable** (0.500 against its twin), exactly as Proposition 3 predicts. Option B does not change the identification boundary.
+5. **Scope.** The null is the partial-adjustment best-response class with i.i.d. shocks.
+   - A competitor that learns, adjusts toward a different target (for example the current Nash price) or has serially correlated noise is outside the null and could be flagged.
+   - This is the same limitation Belal (2026) states for constant-cost tests, moved one step outward.

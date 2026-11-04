@@ -1,0 +1,102 @@
+frozen thresholds: {'score_ac1': 1.4479041375946575, 'score': 2.596944082640242, 'score_bp': 14.627376372886811}
+SC scored (71s)
+SR scored (110s)
+ST scored (151s)
+primary scoring done (333s)
+mu-estimated SC (944s)
+mu-estimated SR (1267s)
+                                  contrast statistic  threshold  auc_pooled  auc_pooled_lo  auc_pooled_hi  auc_within   TPR   FPR
+                                  SR vs SC score_ac1      1.448       0.977          0.964          0.987       0.978 0.919 0.048
+                                  ST vs SC score_ac1      1.448       0.996          0.991          0.999       0.996 0.978 0.048
+                             CP vs CP_twin score_ac1      1.448       0.500          0.452          0.549       0.500 0.059 0.059
+                                  CP vs SC score_ac1      1.448       0.509          0.461          0.557       0.510 0.059 0.048
+            fast rigid vs fast comp (test) score_ac1      1.448       0.790          0.749          0.831       0.788 0.674 0.048
+         fast tracking vs fast comp (test) score_ac1      1.448       0.995          0.989          0.999       0.994 0.985 0.048
+SC vs fast comp (test) [dynamics contrast] score_ac1      1.448       0.518          0.467          0.567       0.525 0.048 0.048
+                                  SR vs SC     score      2.597       0.870          0.842          0.897       0.866 0.485 0.052
+                                  ST vs SC     score      2.597       0.319          0.278          0.361       0.326 0.026 0.052
+                             CP vs CP_twin     score      2.597       0.500          0.454          0.548       0.500 0.067 0.067
+                                  CP vs SC     score      2.597       0.476          0.427          0.524       0.474 0.067 0.052
+            fast rigid vs fast comp (test)     score      2.597       0.566          0.520          0.613       0.568 0.078 0.056
+         fast tracking vs fast comp (test)     score      2.597       0.425          0.386          0.463       0.423 0.200 0.056
+SC vs fast comp (test) [dynamics contrast]     score      2.597       0.525          0.477          0.569       0.533 0.052 0.056
+                                  SR vs SC  score_bp     14.627       0.935          0.915          0.954       0.934 0.789 0.044
+                                  ST vs SC  score_bp     14.627       0.978          0.967          0.987       0.978 0.911 0.044
+                             CP vs CP_twin  score_bp     14.627       0.500          0.451          0.546       0.500 0.063 0.063
+                                  CP vs SC  score_bp     14.627       0.534          0.486          0.585       0.532 0.063 0.044
+            fast rigid vs fast comp (test)  score_bp     14.627       0.941          0.921          0.959       0.941 0.759 0.044
+         fast tracking vs fast comp (test)  score_bp     14.627       0.977          0.962          0.988       0.975 0.937 0.044
+SC vs fast comp (test) [dynamics contrast]  score_bp     14.627       0.493          0.445          0.542       0.497 0.044 0.044
+                                  SR vs SC      D_L3      0.053       0.857          0.833          0.882       0.932 1.000 1.000
+                                  ST vs SC      D_L3      0.053       0.814          0.784          0.841       0.886 1.000 1.000
+                             CP vs CP_twin      D_L3      0.053       0.500          0.461          0.537       0.500 0.033 0.033
+SC vs fast comp (test) [dynamics contrast]      D_L3      0.053       1.000          1.000          1.000       1.000 1.000 0.052
+                   SR vs SC (mu estimated) score_ac1      2.574       0.964          0.949          0.979       0.966 0.811 0.004
+{
+ "threshold_score_B": 1.4479041375946575,
+ "B1": {
+  "rule": "AUC(Score_B) SR vs SC >= 0.90",
+  "value": [
+   0.9768175582990398,
+   0.9638947187928669,
+   0.9873261316872428
+  ],
+  "pass": true
+ },
+ "B2": {
+  "rule": "FPR of SC at frozen Score_B threshold <= 0.10",
+  "value": [
+   0.04814814814814815,
+   0.028350915878327814,
+   0.08062257173456762
+  ],
+  "pass": true
+ },
+ "kill_triggered": false
+}
+{
+ "FPR_fast_test_competitors": 0.04814814814814815,
+ "CP_twin_max_price_difference": 0.0,
+ "estimation_accuracy": {
+  "SC": {
+   "c_abs_err_median": 0.056873130577311526,
+   "lambda_corr": 0.7725262624413612,
+   "lambda_err_median": -0.017249732020812765
+  },
+  "TEST_fast_comp": {
+   "c_abs_err_median": 0.009089103927682751,
+   "lambda_corr": 0.9696495227323487,
+   "lambda_err_median": -0.01542685243747044
+  },
+  "SR": {
+   "c_abs_err_median": 0.44674347665272485,
+   "lambda_corr": 0.1969098725837276,
+   "lambda_err_median": -0.0961430986338814
+  }
+ },
+ "mu_estimated_variant": {
+  "threshold": 2.5743810611119047,
+  "auc_pooled": 0.9644993141289437,
+  "FPR_SC": 0.003703703703703704,
+  "TPR_SR": 0.8111111111111111,
+  "mu_hat_median": {
+   "CAL_fast_comp": 0.225,
+   "SC": 0.15,
+   "SR": 0.15
+  },
+  "mu_hat_iqr": {
+   "CAL_fast_comp": [
+    0.225,
+    0.25
+   ],
+   "SC": [
+    0.15,
+    0.175
+   ],
+   "SR": [
+    0.15,
+    0.175
+   ]
+  }
+ }
+}
