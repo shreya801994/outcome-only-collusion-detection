@@ -72,8 +72,14 @@ def _cooperative(c1, c2, a1, a2, kappa, a0, mu):
 
 
 def simulate_batch(costs, a, q, conduct, params, rng_params, rng_noise, rng_tremble,
-                   mu=0.25, a0=0.0, base_a=2.0):
+                   mu=0.25, a0=0.0, base_a=2.0, mandate=None):
     """Simulate len(costs) runs.
+
+    mandate : optional (R, T) array of price displacements for firm 1 (index 0), used only by
+              the probe experiment (addendum 6).  Where non-zero, firm 1's price in that period is
+              the rule's price plus the displacement (a regulator-mandated price change).  The
+              rule, its expected price and all random streams are unchanged, so a probed run and
+              its unprobed twin differ only through the mandate.  None (default) = no change.
 
     costs : (R, 2) hidden marginal costs.
     a     : (R, T, 2) attractiveness paths.   q : (R, T) market-size paths.
@@ -136,6 +142,8 @@ def simulate_batch(costs, a, q, conduct, params, rng_params, rng_noise, rng_trem
         exp2 = prev2 + lam[:, 1] * (tgt2 - prev2)
         p1 = exp1 + noise[:, t, 0] - tremble[:, t, 0] * tremble_size[:, t, 0]
         p2 = exp2 + noise[:, t, 1] - tremble[:, t, 1] * tremble_size[:, t, 1]
+        if mandate is not None:
+            p1 = p1 + mandate[:, t]
         p1 = np.clip(p1, params.price_min, params.price_max)
         p2 = np.clip(p2, params.price_min, params.price_max)
 
