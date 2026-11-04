@@ -1,0 +1,11 @@
+env            conduct  runs  median_sd_share  median_sd_ratio_2b  median_sd_inv_1_minus_s  median_sd_outside_share
+ E0        competitive   270           0.0256              1.4150                   0.1575                   0.0037
+ E0    collusive_rigid   270           0.0421              2.9084                   0.1988                   0.0353
+ E1        competitive   270           0.0255              1.3331                   0.1647                   0.0037
+ E1    collusive_rigid   270           0.0425              2.8622                   0.1754                   0.0354
+ E2        competitive   270           0.0766             23.1214                   0.4021                   0.0567
+ E2    collusive_rigid   270           0.1634             11.0834                   1.4066                   0.1524
+ E2 collusive_tracking   270           0.1080              6.3417                   0.7044                   0.0750
+ E3        competitive   270           0.0756             24.8421                   0.4179                   0.0598
+ E3    collusive_rigid   270           0.1592             11.7638                   1.3453                   0.1467
+ E3 collusive_tracking   270           0.1106              5.6887                   0.6852                   0.0740
