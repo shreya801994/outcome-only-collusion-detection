@@ -75,3 +75,37 @@ These mirror the Option B criteria, so the two methods face the same test.
 
 ## Results
 To be added below after the run.
+
+### Results (NEW, added after the run; nothing above was changed)
+Outputs: `results_v2/addendum6_scores.csv`, `addendum6_metrics.csv`, `addendum6_criteria.json`, `addendum6_output.txt`. Runtime about 3 minutes.
+
+| ID | Result | Verdict |
+|---|---|---|
+| **P1** | AUC(Score_P, before/after), slow rigid vs slow competitors (E2) = **0.495** [0.448, 0.541] | **fail** |
+| **P2** | FPR of slow competitors at the frozen Score_P threshold = **0.207** [0.163, 0.260] | **fail** |
+| **P3** | cost padding vs coupled twin: max \|response difference\| **0.0**; AUC 0.500 for both statistics | **pass** |
+
+**Pooled AUC, E2.** "Causal" uses the exact unprobed counterfactual, which a regulator cannot run.
+
+| Contrast | Before/after (regulator-feasible) | Causal (counterfactual) |
+|---|---|---|
+| slow rigid vs slow competitors | 0.495 | 0.974; but FPR 0.878 at the fast-calibrated threshold |
+| slow tracking vs slow competitors | 0.485 | 0.978 |
+| fast rigid vs fast competitors | 0.669 | 0.985 |
+| fast tracking vs fast competitors | 0.612 | 0.987 |
+| Nash-tracking *honest* competitors vs fast competitors | 0.790 | **1.000** (honest firms look exactly like cartels) |
+| cost padding vs its twin | 0.500 | 0.500 |
+| slow vs fast competitors (dynamics contrast) | 0.734 | 0.959 |
+
+E0 gives the same pattern (`addendum6_metrics.csv`).
+
+**Belal's falsification rule (causal R < 0) applied to our agents** (`addendum6_criteria.json`, share_R_negative):
+- **Cartels:** causal R is exactly 0 in 95.9–98.5% of runs, and R < 0 in at most 0.4%. Our scripted cartels do not *punish* an upward deviation; they simply ignore it.
+- **Competitors:** R > 0 in every run, as the theory requires.
+- **Nash-tracking honest competitors:** R = 0 in 100% of runs.
+
+### Reading
+1. **The regulator-feasible probe fails under slow, noisy adjustment.** With 5 one-period probes, a slow competitor's response (about λ × pass-through × Δ) is buried in price noise. The before/after contrast is at chance for cartel vs competitor (0.495), and its frozen threshold flags 21% of honest slow firms. Belal's AUC of 1.00 relies on the exact counterfactual and on his learners' price dynamics.
+2. **With the counterfactual, the probe separates well**, but its *threshold* inherits the same adjustment-speed problem as D (FPR 0.878).
+3. **The sign rule R < 0 detects almost none of our cartels.** Our cartels respond with R = 0, not R < 0. The rule falsifies *punishment of increases*, a feature of his Q-learning collusive regime, not of collusion in general. A rule of R ≤ 0 would separate them, but it would also flag every honest competitor that does not best-respond to the rival's actual price (Nash trackers: R = 0 in 100% of runs). This confirms Belal's own "sieve, not verdict" reading.
+4. **Proposition 3 extends to interventions.** The cost-mimicking policy responds to the mandated increase exactly as its higher-cost competitive twin does (difference 0.0). It is invisible to the probe, as to every passive screen. Any price policy satisfying condition (S) has this property, whatever intervention is applied.
