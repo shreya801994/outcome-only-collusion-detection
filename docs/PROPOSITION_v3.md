@@ -138,3 +138,10 @@ Let costs be constant and demand vary over t, so shares vary, under (E1)-(E3). W
 - **Lau (1982),** *Economics Letters* 10: 93-99. Full text unread. Matsumura & Otani (arXiv 2410.16998; a revised 2026 version is reported by the reviewer, unverified by me) argue that Lau's characterisation is incorrect. Both concern homogeneous-goods conduct parameters, and **neither implies our logit results**.
 - **Mizuno (2003):** not cited.
 - **Belal (2026),** SSRN 7266558 / 7267038 (same title; the version is unresolved). The abstract was supplied by the team; the full text is unread.
+
+## Update, 4 November 2026 (appended; the text above is unchanged)
+- **Lemma 2 citation.** Li, H. & Huh, W.T. (2011), "Pricing Multiple Products with the Multinomial Logit and Nested Logit Models: Concavity and Implications", *Manufacturing & Service Operations Management* 13(4): 549–563, doi:10.1287/msom.1110.0344. VERIFIED from the abstract only (RePEc and IAOR listings): it proves that total profit is concave in market shares for MNL and nested logit, even with product-specific price sensitivities. The abstract does not state the equal-markup or uniqueness results. Cite it for concavity in shares ("see also Li & Huh 2011"), and keep our own proof of Lemma 2 until the full text is checked.
+- **Descriptive share plot (Proposition 2, scope item 4).** Now done: `experiments/review3_share_movement.py`, `results_v2/review3_share_movement.csv`, `fig4_share_movement.png` (EXPLORATORY, stored data only).
+  - E2 and E3 triple competitors' within-run share SD relative to E0 and E1 (0.077 vs 0.026).
+  - They raise the SD of 1/(1 − sᵢ), the term in Proposition 2(c), about seven-fold for the rigid cartel (1.41 vs 0.20).
+  - Summary in `docs/FINAL_SIMULATION_REPORT.md` §2.3.
