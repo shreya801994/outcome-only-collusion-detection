@@ -38,3 +38,40 @@ D_L3 is re-scored alongside for direct comparison.
 
 ## The intervention benchmark (Belal's probe) and the learning-agent benchmark
 These need new simulations. They are pre-registered separately (addenda 6 and 7) before they are run.
+
+## Results (NEW, added after the run; nothing above was changed)
+Outputs: `results_v2/addendum5_scores.csv`, `addendum5_metrics.csv`, `addendum5_checks.json`, `addendum5_output.txt`.
+- **Regeneration check:** every regenerated arm reproduces its stored D_L3 scores to within 1.1e-16.
+- **Twin:** maximum price difference 0.0.
+
+### Pooled AUC (positive vs negative). FPR at the frozen threshold in brackets where it matters.
+| Contrast | V1 variance (CV) | V2 SD(Δp) | V3 KS | BC Belal coverage | D_L3 |
+|---|---|---|---|---|---|
+| main E0: rigid vs competitive | **0.008** | 0.037 | 0.609 | 0.554 | 0.612 |
+| main E1: rigid vs competitive | 0.004 | 0.046 | 0.537 | 0.538 | 0.588 |
+| main E2: rigid vs competitive | 0.408 | 0.126 | 0.946 | **1.000** | 1.000 |
+| main E2: tracking vs competitive | 0.009 | 0.016 | 0.842 | 1.000 | 1.000 |
+| main E3: rigid vs competitive | 0.425 | 0.157 | 0.949 | 1.000 | 1.000 |
+| main E3: tracking vs competitive | 0.009 | 0.023 | 0.886 | 1.000 | 1.000 |
+| slow tracking vs slow competitive (add. 2) | 0.081 | 0.161 | 0.429 | 0.930 [FPR **1.000**] | 0.822 [FPR 1.000] |
+| slow rigid vs slow competitive (add. 3) | 0.621 | 0.306 | 0.407 | 0.930 [FPR **1.000**] | 0.854 [FPR 1.000] |
+| cost padding vs competitive at true costs | 0.796 | 0.634 | 0.558 | 0.527 | 0.378 |
+| **cost padding vs coupled twin** | **0.500** | **0.500** | **0.500** | **0.500** | **0.500** |
+| C1 wide costs: rigid vs competitive | 0.050 | 0.104 | 0.601 | 0.543 | 0.619 |
+| C2: rigid vs Nash-tracking, no price cuts | **0.971** | 0.504 | 0.470 | 0.382 | 0.466 |
+| C3: tracking vs Nash-tracking, no price cuts | 0.028 | 0.000 | 0.664 | 1.000 | 1.000 |
+
+### Reading
+1. **The classic variance screen points the wrong way when cartels punish.**
+   - It flags low price variation. Our cartels' punishment episodes, triggered by exogenous price cuts, make collusive prices *more* variable than competitive ones, so V1 and V2 have AUC far below 0.5 (0.004–0.05) in E0, E1 and C1.
+   - V1 works only where there are no punishment episodes (C2: 0.971).
+   - Bolotova et al. (2008) already found the variance effect has opposite signs in their two cartels (lower for lysine, higher for citric acid). Our result shows the sign depends on whether deviations and punishments occur on path.
+2. **V3 (KS)** separates fast markets under share shocks (0.84–0.95) but fails against slow competitors (0.41–0.43).
+3. **Belal's constant-cost coverage (BC) behaves like our D.**
+   - It is perfect in E2/E3 against fast competitors.
+   - It is at chance with stationary demand (E0 0.554, consistent with Proposition 1).
+   - It ranks slow cartels against slow competitors somewhat better than D (0.930 vs 0.854/0.822).
+   - But its frozen threshold flags **100%** of slow competitors.
+   - So his identified-set test shares the adjustment-speed calibration failure. This replicates his own "precision of optimization" reading with an explicit operating point.
+4. **No passive screen beats 0.500 against the cost-mimicking twin**, as Proposition 3 predicts.
+5. **Comparison with Option B** (addendum 4: AUC 0.977, FPR 0.048 on slow competitors). Option B is the only screen benchmarked that keeps its false-positive rate at the nominal level when competitors' adjustment speed differs from the calibration population.
