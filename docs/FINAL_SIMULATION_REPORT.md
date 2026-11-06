@@ -3,6 +3,10 @@
 *Shreya Dubey, Justin Santosh, Tanmay Kumar; supervisor Dr. Om Prakash Vyas, IIIT Naya Raipur.*
 *Written 4 November 2026. Branch `review/gap-closing` of `shreya801994/outcome-only-collusion-detection`.*
 
+> **Update, 6 November 2026 (branch `review/option-b`).** Option B and three benchmarks have since been pre-registered and run: published screens, Belal's coverage test and probe, and a Calvano Q-learning reproduction. **§12** summarises them and supersedes the "Option B: UNRUN" and "scripted agents only" statements in §9.
+> - Pre-registered rules now total **23**: 16 pass and 7 fail.
+> - Pre-registered scripted runs now total **19,570**, plus 450 Q-learning sessions.
+
 This document collects, in one place, everything the simulation study did: how the simulator works, every experiment that was run, every result, what it means, and what is still open. It replaces nothing. The earlier documents, data, thresholds, pre-registrations and results are unchanged (§10 has the reproduction check). Where this report and an older document disagree, this report and `docs/PROPOSITION_v3.md` are current. `docs/V2_RESULTS.md` and slides 4, 5, 9 and 10 of the progress deck are **stale** (§9).
 
 **Labels.**
@@ -402,7 +406,7 @@ We must not claim to be first to show that passive screens fail.
 3. **Belal's full text is unread.** The comparison rests on the abstract and repository.
 4. **Lau (1982) is unread.** It is cited only through Matsumura & Otani (2024), with a caveat. Mizuno (2003) is not cited.
 5. **The μ-recalibration result** assumes labelled competitive data.
-6. **Option B (estimating adjustment speed from trajectories): UNRUN.**
+6. **Option B (estimating adjustment speed from trajectories): UNRUN as of 4 November.** *Superseded: run on 5 November and passed its kill criterion (see §12). Item 1 is also superseded by the Q-learning benchmark in §12.*
    - Its kill criterion is unchanged: "stop if, after estimating adjustment speed, AUC(slow cartel vs slow competitors) < 0.90 or FPR at a frozen threshold > 0.10".
    - It has not been triggered, because nothing tested it.
    - I recommend not pursuing it, because a fix tuned to partial-adjustment agents would probably not generalise to other learners.
@@ -474,3 +478,69 @@ VERIFIED on 4 November 2026. Method:
 | Results | `results_v2/*.csv`, `*.json`, `*_output.txt`; figures `fig1`–`fig5` |
 | Simulator | `simulator/equilibrium.py`, `demand_shocks.py`, `batch_sim.py` |
 | Screens and metrics | `detectors/`, `evaluation/metrics.py` |
+
+---
+
+## 12. Update: Option B and the benchmarks (addenda 4–7, 5–6 November 2026)
+
+All four addenda were pre-registered and pushed before running, with fresh seeds; the commit order on `review/option-b` shows this. No earlier data, threshold, rule or result changed: SHA-256 checks, and the regenerated arms match their stored scores to within 1e-16. Full write-ups are in `docs/V2_ADDENDUM_4_OPTION_B.md` through `docs/V2_ADDENDUM_7_QLEARNING.md`. The novelty statement and abstract are in `docs/ABSTRACT_AND_NOVELTY.md`.
+
+### 12.1 What was added
+| Addendum | What | Runs | Seed base |
+|---|---|---|---|
+| 4 | **Option B:** an adjustment-robust test. It estimates each firm's cost and adjustment speed from outcomes (logit inversion recovers the demand state; Huber regression of Δp on the best-response gap), then tests the residuals for serial dependence | 1,350 | 20261107 |
+| 5 | **Published screens:** variance screen (Abrantes-Metz et al. 2006), SD of price changes (Bolotova et al. 2008), KS screen (adapted from Blanckenburg et al. 2012), and **Belal's constant-cost coverage test**, ported from his MIT-licensed `costid.py` | 0 (stored or regenerated runs) | (original seeds) |
+| 6 | **Belal's upward price probe** on our agents, both before/after (regulator-feasible) and counterfactual | 10,800 | 20261108 |
+| 7 | **Calvano et al. (2020) Q-learning:** our numpy engine, validated, then every screen applied to collusive (δ = 0.95) vs myopic (δ = 0) learners under hidden symmetric costs | 450 sessions | 20261109 |
+
+### 12.2 Pre-registered rules (8 new; 23 in total, 16 pass and 7 fail)
+| ID | Rule | Result | Verdict |
+|---|---|---|---|
+| B1 | Option B: AUC, slow rigid vs slow competitors ≥ 0.90 | 0.977 [0.964, 0.987] | **pass** |
+| B2 | Option B: FPR of slow competitors at a threshold frozen on fast competitors ≤ 0.10 | 0.048 [0.028, 0.081] | **pass** (kill criterion not triggered) |
+| P1 | Probe (before/after): AUC, slow rigid vs slow competitors ≥ 0.90 | 0.495 | **fail** |
+| P2 | Probe: FPR of slow competitors ≤ 0.10 | 0.207 | **fail** |
+| P3 | Cost-mimicking policy vs twin under the probe: identical responses, AUC 0.500 | difference 0.0, AUC 0.500 | **pass** |
+| V1 | Q-learning engine: mean Δ ∈ [0.80, 0.90] | 0.828 (Calvano ≈ 0.85; Belal 0.862) | **pass** |
+| V2 | convergence ≥ 0.90 | 1.00 (median 1.81 million periods) | **pass** |
+| V3 | punishment after a forced deviation ≥ 0.80 | 0.94 | **pass** |
+
+### 12.3 The benchmark in one figure (`results_v2/fig6_benchmark_matrix.png`; numbers in `fig6_benchmark_matrix.csv`)
+| Test | Scripted, fast | Scripted, slow (threshold from fast) | Cost-mimicking vs twin | Q-learning |
+|---|---|---|---|---|
+| B0 price level | 0.99 (FPR 0.04) | 0.98 (0.03) | 0.50 | 0.97 (0.03) |
+| D implied-cost stability | 1.00 (0.05) | 0.85 (**1.00**) | 0.50 | 0.39 (0.10) |
+| Belal coverage | 1.00 (0.05) | 0.93 (**1.00**) | 0.50 | 0.27 (0.05) |
+| Variance screen | 0.41 (0.06) | 0.62 (0.01) | 0.50 | 0.38 (0.07) |
+| **Adjustment-robust test (ours)** | 0.79 (0.05) | **0.98 (0.05)** | 0.50 | 0.66 (0.13) |
+| Probe, before/after | 0.67 (0.03) | 0.50 (0.21) | 0.50 | **0.93** (0.09) |
+| Probe, counterfactual | 0.99 (0.11) | 0.97 (**0.88**) | 0.50 | 0.91 (0.05) |
+
+### 12.4 What it means
+1. **Option B works where it was designed to work.**
+   - Among scripted partial adjusters it is the only screen whose frozen threshold keeps a nominal false-positive rate when competitors adjust more slowly than the calibration population (0.048, against 1.00 for D and Belal's coverage test).
+   - It also ranks conduct better (0.977).
+   - It fails outside its null class: on Q-learners it scores AUC 0.658, with 17% false positives at its frozen threshold. Its weakest scripted case is the fast rigid cartel (0.790).
+2. **Belal's probe works on learners but not as a regulator-feasible test on slow, noisy firms.**
+   - Collusive Q-learners punish a forced increase (R < 0 in 91% of sessions).
+   - Our scripted cartels ignore it (R = 0), so the R < 0 rule detects at most 0.4% of them.
+   - Honest Nash-tracking firms also show R = 0.
+3. **No single test dominates.** Each outcome or intervention test is a test of a stated null class of competitive behaviour.
+4. **The identification boundary holds against interventions too.** A policy that applies a competitive rule at inflated costs produces outcomes and intervention responses identical to an honest higher-cost twin. Every test, including Option B and both probe statistics, scores exactly 0.500 (Proposition 3, condition S).
+5. **Classic variance screens reverse sign** when punishments occur on path (AUC 0.004–0.05). They work only without punishment episodes (0.971).
+
+### 12.5 Remaining limitations (replaces §9 items 1 and 6)
+- **Learning agents:** only Calvano's baseline (k = 1, stationary demand). Learning with demand shocks, deep or LLM agents, and Belal's other regimes are not run.
+- **Option B's null is the partial-adjustment class with i.i.d. noise.** It does not cover learners.
+- **Our myopic learners' R < 0 rate (49%) differs from Belal's reported myopic rate (8%).** Unexplained, and not investigated.
+- **Belal's full text is still unread.** Every novelty claim in `ABSTRACT_AND_NOVELTY.md` must be rechecked against it.
+
+### 12.6 Reproduction
+```bash
+python -m experiments.v2_option_b              # addendum 4 (about 21 min on 2 CPUs; --no-mu skips the mu variant)
+python -m experiments.v2_benchmark_passive     # addendum 5 (about 15 min)
+python -m experiments.v2_probe                 # addendum 6 (about 3 min)
+python -m experiments.v2_qlearning_benchmark   # addendum 7 (about 10 min)
+python -m experiments.report_benchmark_figure  # fig6
+```
+The clean-clone check of these four scripts is recorded in `docs/ABSTRACT_AND_NOVELTY.md` §6.

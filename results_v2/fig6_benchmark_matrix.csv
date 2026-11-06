@@ -1,0 +1,29 @@
+test,setting,auc,fpr_at_frozen_threshold
+B0 price level,"Scripted, fast (rigid cartel vs competitors, E2)",0.9866941015089165,0.037037037037037
+B0 price level,"Scripted, slow (rigid cartel vs competitors, E2)",0.98320987654321,0.0333333333333333
+B0 price level,Cost-mimicking policy vs its higher-cost twin,0.5,
+B0 price level,Q-learning (collusive vs myopic learners),0.9697777777777776,0.0333333333333333
+D implied-cost stability,"Scripted, fast (rigid cartel vs competitors, E2)",0.9999314128943758,0.0518518518518518
+D implied-cost stability,"Scripted, slow (rigid cartel vs competitors, E2)",0.853840877914952,1.0
+D implied-cost stability,Cost-mimicking policy vs its higher-cost twin,0.5,
+D implied-cost stability,Q-learning (collusive vs myopic learners),0.3933777777777777,0.1
+Belal identified-set coverage,"Scripted, fast (rigid cartel vs competitors, E2)",1.0,0.0481481481481481
+Belal identified-set coverage,"Scripted, slow (rigid cartel vs competitors, E2)",0.9302263374485596,1.0
+Belal identified-set coverage,Cost-mimicking policy vs its higher-cost twin,0.5,
+Belal identified-set coverage,Q-learning (collusive vs myopic learners),0.268,0.0533333333333333
+Variance screen (CV),"Scripted, fast (rigid cartel vs competitors, E2)",0.4080658436213992,0.0592592592592592
+Variance screen (CV),"Scripted, slow (rigid cartel vs competitors, E2)",0.6214540466392319,0.0111111111111111
+Variance screen (CV),Cost-mimicking policy vs its higher-cost twin,0.5,
+Variance screen (CV),Q-learning (collusive vs myopic learners),0.3824,0.0733333333333333
+Adjustment-robust test (ours),"Scripted, fast (rigid cartel vs competitors, E2)",0.7901097393689986,0.0481481481481481
+Adjustment-robust test (ours),"Scripted, slow (rigid cartel vs competitors, E2)",0.9768175582990398,0.0481481481481481
+Adjustment-robust test (ours),Cost-mimicking policy vs its higher-cost twin,0.5,
+Adjustment-robust test (ours),Q-learning (collusive vs myopic learners),0.6579111111111111,0.1333333333333333
+"Probe, before/after","Scripted, fast (rigid cartel vs competitors, E2)",0.6687379972565157,0.0333333333333333
+"Probe, before/after","Scripted, slow (rigid cartel vs competitors, E2)",0.4954458161865569,0.2074074074074074
+"Probe, before/after",Cost-mimicking policy vs its higher-cost twin,0.5,
+"Probe, before/after",Q-learning (collusive vs myopic learners),0.9289333333333334,0.0933333333333333
+"Probe, counterfactual","Scripted, fast (rigid cartel vs competitors, E2)",0.9854732510288066,0.1148148148148148
+"Probe, counterfactual","Scripted, slow (rigid cartel vs competitors, E2)",0.974320987654321,0.8777777777777778
+"Probe, counterfactual",Cost-mimicking policy vs its higher-cost twin,0.5,
+"Probe, counterfactual",Q-learning (collusive vs myopic learners),0.9078888888888887,0.0533333333333333
