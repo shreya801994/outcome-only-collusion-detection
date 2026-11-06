@@ -83,5 +83,5 @@
   - The probe and passive-benchmark printed outputs are identical.
   - 71 tests pass.
 - **The degenerate-path fix changed no addendum-4 result.** Addendum 4 was first run before the fix; it reproduces identically with the fixed code.
-- **Earlier results are untouched.** All 66 `results_v2/` and `data_v2/` files that existed before addendum 4 match their SHA-256 fingerprints.
+- **Earlier results are untouched.** All 53 `results_v2/` and `data_v2/` files that existed before addendum 4 match their SHA-256 fingerprints.
 - **Numbers in §2–§3** were checked against `addendum4_metrics.csv`, `addendum5_metrics.csv`, `addendum6_metrics.csv`, `addendum7_metrics.csv`, the criteria JSON files and `rates.csv`.
