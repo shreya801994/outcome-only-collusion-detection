@@ -75,3 +75,13 @@
    - Primary journals: *Computational Economics*, *Journal of Economic Interaction and Coordination*.
    - Stretch: *International Journal of Industrial Organization*, a natural home for screening papers (Abrantes-Metz et al. 2006; Bolotova et al. 2008).
    - Conferences: IIOC 2027 (call expected in December) or an AAMAS 2027 workshop.
+
+## 6. Verification (VERIFIED, 6 November 2026)
+- **Clean-clone reproduction.** A fresh clone of `review/option-b` at `d832403` ran addenda 4–7 from scratch: probe 46 s, Q-learning 588 s, passive benchmark 282 s, Option B 724 s, on 2 CPUs.
+  - Every score, metric and check file is **byte-identical** to the committed one.
+  - The only differences are the `runtime_seconds` fields in two criteria files.
+  - The probe and passive-benchmark printed outputs are identical.
+  - 71 tests pass.
+- **The degenerate-path fix changed no addendum-4 result.** Addendum 4 was first run before the fix; it reproduces identically with the fixed code.
+- **Earlier results are untouched.** All 66 `results_v2/` and `data_v2/` files that existed before addendum 4 match their SHA-256 fingerprints.
+- **Numbers in §2–§3** were checked against `addendum4_metrics.csv`, `addendum5_metrics.csv`, `addendum6_metrics.csv`, `addendum7_metrics.csv`, the criteria JSON files and `rates.csv`.
