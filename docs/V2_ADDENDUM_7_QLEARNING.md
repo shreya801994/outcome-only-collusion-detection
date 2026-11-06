@@ -67,5 +67,52 @@ Fix in `detectors/adjustment_test.py`:
 
 Non-degenerate inputs take exactly the original code path. Re-scoring the stored addendum-4 calibration runs reproduces their scores to within 2.2e-16. The experiment is then rerun from the same seeds; training is deterministic.
 
-## Results
-To be added below after the run.
+## Results (NEW, added after the run; nothing above was changed)
+Runtime 589 s on 2 CPUs. Outputs: `results_v2/addendum7_sessions.csv`, `addendum7_metrics.csv`, `addendum7_criteria.json`, `addendum7_output.txt`.
+- **Training:** all 450 sessions converged; the slowest arm needed 3.15 million periods.
+- **Determinism:** the rerun after the deviation reproduced the first run's training exactly (same period counts in all three arms).
+
+### Validation of the engine
+| ID | Result (QC, c = 1, 50 sessions) | Verdict |
+|---|---|---|
+| V1 | mean Δ = **0.828** (SE 0.018); Calvano et al. ≈ 0.85; Belal's replication 0.862 | **pass** |
+| V2 | convergence rate **1.00**; median convergence at 1.81 million periods (Belal 1.8 million) | **pass** |
+| V3 | rival's price falls after a forced deviation in **94%** of sessions (Belal 100%) | **pass** |
+
+The engine is a faithful reproduction of the baseline.
+
+| Arm and cost | 0.85 | 1.00 | 1.15 |
+|---|---|---|---|
+| **Δ** QC (δ = 0.95) | 0.868 | 0.828 | 0.889 |
+| **Δ** QM (δ = 0) | 0.219 | 0.217 | 0.219 |
+| **Mean price** QC | 1.741 | 1.766 | 1.867 |
+| **Mean price** QM | 1.418 | 1.540 | 1.659 |
+
+### Screens: collusive learners (QC) vs myopic learners (QM), 150 vs 150, thresholds from QM_cal
+| Screen | Pooled AUC [95% CI] | Within-cost AUC | TPR | FPR |
+|---|---|---|---|---|
+| B0 price level | **0.970** [0.955, 0.982] | 1.000 | 0.860 | 0.033 |
+| B1 synchronisation | 0.207 | 0.202 | 0.013 | 0.113 |
+| B2 lead-lag | 0.808 | 0.809 | 0.493 | 0.067 |
+| B3 deviation response | 0.736 | 0.736 | 0.000 | 0.000 |
+| D_L3 implied-cost stability | 0.393 | 0.394 | 0.307 | 0.100 |
+| **Score_B (Option B)** | **0.658** [0.599, 0.718] | 0.657 | 0.300 | 0.133 |
+| BC Belal coverage | 0.268 | 0.265 | 0.027 | 0.053 |
+| V1 variance (CV) | 0.382 | 0.366 | 0.027 | 0.073 |
+| V2 SD(Δp) | 0.506 | 0.516 | 0.060 | 0.107 |
+| V3 KS | 0.786 | 0.792 | 0.253 | 0.093 |
+| **Probe, before/after (regulator-feasible)** | **0.929** [0.895, 0.958] | 0.929 | 0.853 | 0.093 |
+| Probe, causal (counterfactual) | 0.908 [0.870, 0.940] | 0.906 | 0.773 | 0.053 |
+
+**Report-only items:**
+- **Option B out of class.** At the addendum-4 frozen threshold (1.448, set on scripted fast competitors), it flags **17.3%** of myopic learners and **38.7%** of collusive learners.
+- **Belal's sign rule (causal R < 0):** fires in **90.7%** of collusive learners and **48.7%** of myopic learners (QM_cal 51.3%). The before/after version gives 93.3% and 50.7%.
+
+### Reading
+1. **Belal's probe works on learning agents** (AUC 0.93; R < 0 in 91% of collusive sessions), as he reports. Collusive Q-learners do punish a forced *increase*; our scripted cartels do not (addendum 6).
+   - But the sign rule also fires for about half of the myopic learners. That is far above the 8% Belal reports for his myopic regime and close to his memoryless regime (51%).
+   - We do not know what produces the difference; the regime definitions may differ (REPORTED from his repository, not investigated). As a standalone rule it is a sieve, not a verdict.
+2. **Option B does not transfer to learning agents** (AUC 0.658; 17% false positives at its frozen threshold). Grid-valued learned strategies are outside its partial-adjustment null class, exactly as stated before the run.
+3. **Every structure-based passive screen fails** in Calvano's stationary environment, as Propositions 1–2 predict without share-moving demand: D 0.393, BC 0.268, V1 0.382, V2 0.506.
+4. **Price level (B0) separates well** (0.970 pooled). The hidden-cost range (±0.15) is small relative to the learners' markup gap (about 0.2–0.35). The confirmatory C1 result shows B0's pooled power falls when cost uncertainty is wider.
+5. **No single test dominates.** The adjustment-robust test (Option B) works for scripted partial adjusters and fails for learners. The intervention probe works for learners and fails for slow scripted firms when only before/after data are available (addendum 6). Each test is a test of its own null class.

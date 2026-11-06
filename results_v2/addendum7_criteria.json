@@ -1,0 +1,45 @@
+{
+  "V1": {
+    "rule": "mean Delta (QC, c = 1) in [0.80, 0.90]",
+    "value": 0.8275889321405897,
+    "se": 0.0176575996446588,
+    "pass": true
+  },
+  "V2": {
+    "rule": "convergence rate (QC, c = 1) >= 0.90",
+    "value": 1.0,
+    "pass": true
+  },
+  "V3": {
+    "rule": "share of QC (c = 1) sessions in which the rival's price falls after a forced deviation >= 0.80",
+    "value": 0.94,
+    "pass": true
+  },
+  "report_only": {
+    "Delta_by_arm_cost": "{('QC', 0.85): 0.8679, ('QC', 1.0): 0.8276, ('QC', 1.15): 0.8893, ('QM', 0.85): 0.2194, ('QM', 1.0): 0.2169, ('QM', 1.15): 0.2187, ('QM_cal', 0.85): 0.2198, ('QM_cal', 1.0): 0.1958, ('QM_cal', 1.15): 0.2353}",
+    "median_t_converged": {
+      "QC": 1808462.0,
+      "QM": 2186009.5,
+      "QM_cal": 2171259.0
+    },
+    "convergence_rate": {
+      "QC": 1.0,
+      "QM": 1.0,
+      "QM_cal": 1.0
+    },
+    "mean_price_by_arm_cost": "{('QC', 0.85): 1.7412, ('QC', 1.0): 1.7661, ('QC', 1.15): 1.8668, ('QM', 0.85): 1.4178, ('QM', 1.0): 1.5402, ('QM', 1.15): 1.6588, ('QM_cal', 0.85): 1.4183, ('QM_cal', 1.0): 1.5334, ('QM_cal', 1.15): 1.6623}",
+    "OptionB_FPR_myopic_at_addendum4_threshold": 0.17333333333333334,
+    "OptionB_TPR_collusive_at_addendum4_threshold": 0.38666666666666666,
+    "share_R_causal_negative": {
+      "QC": 0.9066666666666666,
+      "QM": 0.4866666666666667,
+      "QM_cal": 0.5133333333333333
+    },
+    "share_R_naive_negative": {
+      "QC": 0.9333333333333333,
+      "QM": 0.5066666666666667,
+      "QM_cal": 0.52
+    }
+  },
+  "runtime_seconds": 588.7
+}
