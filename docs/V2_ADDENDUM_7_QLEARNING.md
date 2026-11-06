@@ -58,5 +58,14 @@ If any V rule fails, the engine is not a faithful reproduction. The screening re
 - **Option B treats learners as out-of-class:** grid-valued learning is not partial adjustment. Its FPR on myopic learners may be far above 0.05.
 - **The causal probe should separate** if collusive learners punish an increase (Belal reports R < 0 in 100% of his k = 1 collusive markets).
 
+## Deviation (recorded before any screening result was seen)
+The first run trained all sessions (all converged), then **crashed while scoring Option B**: converged Q-learners often sit at a rest point, so many price changes are exactly zero and the Huber regression matrix is singular. No screening output was produced or seen.
+
+Fix in `detectors/adjustment_test.py`:
+1. On a singular matrix, the solver falls back to the pseudo-inverse.
+2. When the restricted-model residuals have no variation at all, the lag-1 and Box–Pierce statistics are set to 0 ("no evidence"), because the autocorrelation is undefined.
+
+Non-degenerate inputs take exactly the original code path. Re-scoring the stored addendum-4 calibration runs reproduces their scores to within 2.2e-16. The experiment is then rerun from the same seeds; training is deterministic.
+
 ## Results
 To be added below after the run.

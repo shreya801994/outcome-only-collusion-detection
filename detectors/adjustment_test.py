@@ -75,7 +75,10 @@ def _huber_ols(y, X, iters=50):
         u = np.abs(r) / (HUBER_K * s)
         w = np.where(u <= 1, 1.0, 1.0 / u)
         Xw = X * w[:, None]
-        new = np.linalg.solve(X.T @ Xw, Xw.T @ y)
+        try:
+            new = np.linalg.solve(X.T @ Xw, Xw.T @ y)
+        except np.linalg.LinAlgError:  # degenerate design, e.g. a constant price path (addendum 7)
+            new = np.linalg.pinv(X.T @ Xw) @ (Xw.T @ y)
         if np.max(np.abs(new - beta)) < 1e-12:
             beta = new
             break
@@ -155,6 +158,8 @@ def residual_dependence(resid, lags=5):
     r = r - r.mean()
     n = len(r)
     den = float(r @ r)
+    if den <= 1e-24:  # no residual variation (e.g. a constant price path): no evidence either way
+        return {"z_ac1": 0.0, "box_pierce": 0.0}
     rho = np.array([float(r[k:] @ r[:-k]) / den for k in range(1, lags + 1)])
     return {"z_ac1": float(np.sqrt(n) * rho[0]), "box_pierce": float(n * (rho ** 2).sum())}
 
